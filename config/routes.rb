@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root to: 'application#redirect_to_cozinhacaipira'
-  get 'cozinhacaipira', to: 'application#home'
+  get 'cozinhacaipira', to: 'home#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
