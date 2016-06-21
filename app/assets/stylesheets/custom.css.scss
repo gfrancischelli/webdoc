@@ -3,9 +3,40 @@
 @import "font-awesome";
 @import "colors";
 
+$phone-width: 640px;
+$tablet-width: 768px;
+$desktop-width: 1024px !default;
+
+html {
+	max-width: 100vw;
+	overflow-x: hidden;
+	font-size: 16px;
+}
+
 section {
+	position: relative;
 	min-height: 100vh;
-	width: 100%;
+	min-width:	100vw;
+	padding: 0;
+}
+
+
+@media screen and (max-width: $phone-width) {
+  html  {
+    font-size: 8px;
+  }
+}
+    
+@media screen and (min-width: $phone-width) and (max-width: 769px) {
+  html  {
+    font-size: 12px;
+  }
+} 
+
+body {
+  padding: 0;
+  padding-right: 0px !important; // Stop modal changing width
+  font-family: 'Open Sans', sans-serif;
 }
 
 
