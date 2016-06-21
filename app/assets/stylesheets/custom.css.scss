@@ -1,14 +1,16 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
-$cocoa-brown: #3a2a30;
-$livid-brown: #5d3a49;
-$ferra:       #575c51;
-$sandal:      #d8b596;
+@import "colors";
 
 section {
 	min-height: 100vh;
 	width: 100%;
-	background-color: $cocoa-brown;
 }
+
+
+//  Background Color 
+.bg-brown  { background-color: $brown }
+.bg-wine   { background-color: $wine  }
+.bg-green  { background-color: $green }
+

@@ -7,17 +7,18 @@
 		<%= javascript_include_tag	'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
 
+
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs_aug6OU5RKfHSyzyHeecjH4jRjfo6Fc&callback=initMap"
 				async defer></script>
 		<script src="https://www.youtube.com/iframe_api" async defer></script>
+
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 </head>
     
-	<body id="home" data-spy="scroll" data-target="navbar" 
-	      data-offset="50" padding-top="50">
+	<body id="home" data-spy="scroll" data-target="navbar" data-offset="50" padding-top="50">
 	  		
 	      <%= render 'layouts/navbar' %>
 	      <%= yield %>
