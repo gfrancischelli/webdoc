@@ -1,0 +1,13 @@
+#map-div
+  .row
+    #info-display.col-sm-5
+      .thumbnail
+        -# = image_tag('casa_da_farinha.jpg', id: "cover-img")
+        .caption
+          %h3#title 
+          #synopsis
+            %h2#navegue Navegue pelo mapa
+        %a#watch-sub-episode.btn.btn-default{data: {video_id: "0"}, href: "#home"}
+          <span class="glyphicon glyphicon-film"></span> Assista
+    #map-col.col-sm-7
+      #map

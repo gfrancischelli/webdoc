@@ -6,8 +6,4 @@ class ApplicationController < ActionController::Base
   def redirect_to_cozinhacaipira
     redirect_to '/cozinhacaipira'
   end
-
-  def home
-  end
-
 end

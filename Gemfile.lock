@@ -43,9 +43,9 @@ GEM
       execjs
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.6)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.0.0.alpha3)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.2)
     byebug (9.0.5)
     capistrano (3.5.0)
@@ -57,7 +57,7 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
-    capistrano-harrow (0.5.1)
+    capistrano-harrow (0.5.2)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.1.7)
@@ -77,6 +77,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    font-awesome-sass (4.6.2)
+      sass (>= 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -122,6 +124,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.6)
       sprockets-rails
+    rails-assets-tether (1.1.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -149,7 +152,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     spring (1.7.1)
-    sprockets (3.6.1)
+    sprockets (3.6.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.0.4)
@@ -178,22 +181,25 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (= 3.3.6)
+  bootstrap (~> 4.0.0.alpha3)
   byebug
   capistrano (~> 3.5)
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.1, >= 1.1.7)
   capistrano-rbenv (~> 2.0, >= 2.0.4)
   coffee-rails (~> 4.1.0)
+  font-awesome-sass (~> 4.6.2)
   haml (~> 4.0, >= 4.0.7)
   jbuilder (~> 2.0)
   jquery-rails
   mini_portile2 (~> 2.1)
   pg (~> 0.18.4)
   rails (= 4.2.6)
+  rails-assets-tether (>= 1.1.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
+  sprockets-rails (~> 3.0, >= 3.0.4)
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

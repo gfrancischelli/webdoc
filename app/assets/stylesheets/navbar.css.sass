@@ -1,0 +1,65 @@
+#navlogo 
+  max-width: 7rem
+  height: auto
+  padding-left: 1rem
+  position: absolute
+  bottom: 0.3rem
+  @media (max-width: 480px)
+    width: 0px
+    display: none
+    left: -100px
+    top: -100px
+    margin: 0 !important
+  
+#nav-home-icon
+  display: none
+  color: white
+  padding-left: 0
+  @media (max-width: 480px)
+    display: inline
+    margin: 0
+.small-icon 
+  font-size: 1.2rem
+  margin-left: 1rem
+  @media (max-width: 480px)
+    font-size: 1.2rem
+  
+#main-navbar
+  position: fixed
+  height: 6.5vh
+  width: 100vw
+  z-index: 9999
+  background-color: #3a2a30
+  display: flex
+  @media (max-width: 800px)
+    -webkit-backface-visibility: hidden
+    height: 2rem
+    
+  #navicons-container
+    display: -webkit-flex
+    display: -moz-flex
+    display: flex
+    height: 100%
+    width: 100%
+    justify-content: flex-end
+    align-items: center
+    @media (max-width: 480px)
+      justify-content: space-between
+      align-items: center
+      right: 10rem
+      margin-right: 1.5rem
+      .glyphicon-info
+        margin-right: 3rem
+        padding-right: 3rem
+    @media (min-width: 769px)
+      padding-right: 3rem
+  a
+    color: #fff !important
+    margin: 0 1.3rem 0 1.3rem
+    text-decoration: none
+    @media (max-width: 800px)
+      margin: 0 0.6rem 0 0.6rem
+  a:hover
+    text-decoration: none
+    
+  

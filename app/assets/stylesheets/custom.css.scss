@@ -1,0 +1,14 @@
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+$cocoa-brown: #3a2a30;
+$livid-brown: #5d3a49;
+$ferra:       #575c51;
+$sandal:      #d8b596;
+
+section {
+	min-height: 100vh;
+	width: 100%;
+	background-color: $cocoa-brown;
+}
