@@ -1,12 +1,12 @@
 #main-navbar
-  %a#navlogo{href: "#home"} LOGO
+  %a#navlogo.js-smooth-scroll{href: "#home"} LOGO
   #navicons-container
-    %a{href: "#home"} 
+    %a.js-smooth-scroll{href: "#home"} 
       = icon 'home', id: "nav-home-icon", class: "glyphicon.glyphicon-home.small-icon"
-    %a{href: "#map-div"}
+    %a.js-smooth-scroll{href: "#map-div"}
       = icon 'globe', class: 'small-icon'
-    %a{href: "#videos"}
+    %a.js-smooth-scroll{href: "#videos"}
       = icon 'film', class: 'small-icon'
-    %a{href: "#sobre"}
+    %a.js-smooth-scroll{href: "#sobre"}
       = icon 'info-circle', class: 'small-icon'
       
