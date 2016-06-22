@@ -1,7 +1,7 @@
-var url = "ar_VmlFKY2I";
-var player;
 
 function onYouTubeIframeAPIReady() {
+  var url = "ar_VmlFKY2I";
+  var player;
   player = new YT.Player('youtube', {
     videoId: url,
     playerVars: {
