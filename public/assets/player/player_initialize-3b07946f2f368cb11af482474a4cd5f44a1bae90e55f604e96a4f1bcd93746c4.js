@@ -9,7 +9,8 @@ function onYouTubeIframeAPIReady() {
     events: {
       //  Relative to PLAYER BUTTONS -------
       // 'onReady': onPlayerReady,
-      'onStateChange':  window.onPlayerStateChange
+      'onStateChange':  onPlayerStateChange
     }
   });
 }
+;
