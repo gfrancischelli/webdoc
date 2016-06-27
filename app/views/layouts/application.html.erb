@@ -9,7 +9,8 @@
 
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs_aug6OU5RKfHSyzyHeecjH4jRjfo6Fc&callback=initMap"
-				async defer></script>
+		async defer></script>
+
 		<script src="https://www.youtube.com/iframe_api" async defer></script>
 
 
@@ -18,12 +19,14 @@
 
 </head>
     
-	<body id="home" data-spy="scroll" data-target="navbar" data-offset="50" padding-top="50">
+	<body id="home" data-spy="scroll" data-target="#main-navbar" data-offset="50" padding-top="50">
 	  		
-	      <%= render 'layouts/navbar' %>
-	      <% if notice %><div class="session-status card card-ivnerse card-success text-xs-center"><%= notice %></div><% end %>
-	      <% if alert %><div class="modal modal-open"><%= alert %></div><% end %>
-	      <%= yield %>
+	<!-- Devise notices -->
+    	<%= render 'layouts/navbar' %>
+     	<% if notice %><div class="session-status card card-ivnerse card-success text-xs-center"><%= notice %></div><% end %>
+     	<% if alert %><div class="modal modal-open"><%= alert %></div><% end %>
+
+        <%= yield %>
 
 	</body>
 </html>

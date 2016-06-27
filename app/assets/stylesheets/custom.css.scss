@@ -6,6 +6,7 @@
 $phone-width: 640px;
 $tablet-width: 768px;
 $desktop-width: 1024px !default;
+$nav-height: 6.5vh;
 
 html {
 	max-width: 100vw;
@@ -22,18 +23,15 @@ section {
 
 
 @media screen and (max-width: $phone-width) {
-  html  {
-    font-size: 8px;
-  }
+  html  { font-size: 8px; }
 }
     
 @media screen and (min-width: $phone-width) and (max-width: 769px) {
-  html  {
-    font-size: 12px;
-  }
+  html  { font-size: 12px; }
 } 
 
 body {
+  position: relative;
   padding: 0;
   padding-right: 0px !important; // Stop modal changing width
   font-family: 'Open Sans', sans-serif;
@@ -42,8 +40,8 @@ body {
 
 //  Background Color 
 .bg-brown  { background-color: $brown }
-.bg-wine   { background-color: $wine  }
 .bg-green  { background-color: $green }
+.bg-wine   { background-color: $wine  }
 
 
 // 
@@ -53,22 +51,22 @@ body {
 .nav-height-padding { padding-top: 8.5vh }
 
 .session-status {
-  position: absolute;
-  top: 8.5vh;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  width: 25%;
-  margin: 0 auto;
-  padding: 1rem 2.5rem;
-  opacity: 0.85;
-  color: #FFFFFF;
-  animation: 2s ease session-status-fade;
-  animation-delay: 1.2s;
-  animation-fill-mode: forwards;
+    position: absolute;
+    top: 8.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: 25%;
+    margin: 0 auto;
+    padding: 1rem 2.5rem;
+    opacity: 0.85;
+    color: #FFFFFF;
+    animation: 2s ease session-status-fade;
+    animation-delay: 1.2s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes session-status-fade {
-  from { opacity: 0.85 }
-  to { opacity: 0 }
+    from { opacity: 0.85 }
+    to { opacity: 0 }
 }
