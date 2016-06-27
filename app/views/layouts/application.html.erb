@@ -21,6 +21,8 @@
 	<body id="home" data-spy="scroll" data-target="navbar" data-offset="50" padding-top="50">
 	  		
 	      <%= render 'layouts/navbar' %>
+	      <% if notice %><div class="session-status card card-ivnerse card-success text-xs-center"><%= notice %></div><% end %>
+	      <% if alert %><div class="modal modal-open"><%= alert %></div><% end %>
 	      <%= yield %>
 
 	</body>

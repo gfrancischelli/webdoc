@@ -16,6 +16,7 @@ gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
 gem 'rails-assets-tether', '>= 1.1.0'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass', '~> 4.6.2'
+gem 'devise', '~> 4.1', '>= 4.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

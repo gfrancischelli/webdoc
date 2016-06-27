@@ -45,3 +45,30 @@ body {
 .bg-wine   { background-color: $wine  }
 .bg-green  { background-color: $green }
 
+
+// 
+//  Utility Classes
+// 
+
+.nav-height-padding { padding-top: 8.5vh }
+
+.session-status {
+  position: absolute;
+  top: 8.5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 25%;
+  margin: 0 auto;
+  padding: 1rem 2.5rem;
+  opacity: 0.85;
+  color: #FFFFFF;
+  animation: 2s ease session-status-fade;
+  animation-delay: 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes session-status-fade {
+  from { opacity: 0.85 }
+  to { opacity: 0 }
+}

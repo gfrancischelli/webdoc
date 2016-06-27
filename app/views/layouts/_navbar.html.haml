@@ -9,4 +9,11 @@
       = icon 'film', class: 'small-icon'
     %a.js-smooth-scroll{href: "#sobre"}
       = icon 'info-circle', class: 'small-icon'
+    - if user_signed_in?
+      = link_to current_user.email, edit_user_registration_path
+      = link_to "Log Out", destroy_user_session_path, method: "delete"
+    - else
+      = link_to "Sign Up", new_user_registration_path
+      = link_to "Login", new_user_session_path
+
       
