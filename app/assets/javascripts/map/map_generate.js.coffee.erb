@@ -5,14 +5,15 @@
 window.initMap = ->
 
   updateMapMenu = (video_title, synopsis, id, timestamp, url, watch_btn_title) ->
-      $('#title').text video_title 
-      $('#synopsis').text synopsis
+      alert 'hey'
+      $('#markTitle').text video_title 
+      $('#markContent').text synopsis
       $('#watch-sub-episode').data 
         video_id: id,
         timestamp: timestamp,
         video_url: url
-      $('#info-display *:hidden').fadeIn(650)
-    
+      $('#mapInfoDisplay *:hidden').fadeIn(650)
+
 
   casa_da_farinha = {
     title:"Casa da Farinha"
@@ -46,14 +47,14 @@ window.initMap = ->
     mapTypeId: google.maps.MapTypeId.HYBRID,
     scrollwheel: false
   
-  # Responsive resize  
+  # Map esponsive resize  
   google.maps.event.addDomListener window, "resize", ->
     center = map.getCenter()
     google.maps.event.trigger map, "resize"
     map.setCenter center
     return
   
-  
+    
   generateMarks = (locations_all) ->
     # Creates and stores all marks
     marks = []
@@ -67,7 +68,7 @@ window.initMap = ->
         this_video_marks.push mark
       marks.push this_video_marks
       
-   # 'Click' event injects current video data inside #watch button  
+    # 'Click' event injects current video data inside #watch button  
     #for video_index in [0 .. gon.videos.length - 1]
     for mark in marks[0]
       mark.addListener 'click', ->

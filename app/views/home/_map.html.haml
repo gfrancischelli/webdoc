@@ -1,12 +1,12 @@
 .row
-    #info-display.col-sm-5
+    #mapInfoDisplay.MapInfos.col-sm-5
         .card
             = image_tag('casa_da_farinha.jpg', id: "cover-img", class: "img-fluid")
             .card-block
                 .card-title
-                    %h3#title 
-                #synopsis
-                    %h2#navegue Navegue pelo mapa
+                    %h3#markTitle.info-display-title 
+                #markContent
+                    %h2.text-xs-center Navegue pelo mapa
                 %a#watch-sub-episode.btn.btn-default{data: {video_id: "0"}, href: "#home"}
                     Assista
     #map-col.col-sm-7
