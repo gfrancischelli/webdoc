@@ -1,5 +1,4 @@
 jQuery(document).ready ->
-  console.log('smooth scroll');
   # Smooth Scrolling
   $(".js-smooth-scroll").on 'click', (event) ->  
     event.preventDefault()
