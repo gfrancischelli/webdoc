@@ -2,9 +2,11 @@
    TODO: Highlight current mark on click
    TODO: mark.onClock ~> update thumbnail
 ---------------------------------------------------###
-
+console.log 'before initmap'
 window.initMap = ->
-  
+
+  alert 'hey'
+
   updateMapMenu = (video_title, synopsis, id, timestamp, url, watch_btn_title) ->
       $('#title').text video_title 
       $('#synopsis').text synopsis
@@ -81,7 +83,7 @@ window.initMap = ->
         updateMapMenu title, synopsis, video_id,
                       point_timestamp, video_url, title
                       
-        $("#player-div").attr "data-id", video_id
+        $(".js-set-player-id").attr "data-id", video_id
           
             
   # Used in generateMarks
