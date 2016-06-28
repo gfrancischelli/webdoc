@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623171704) do
+ActiveRecord::Schema.define(version: 20160628212630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,22 @@ ActiveRecord::Schema.define(version: 20160623171704) do
 
   add_index "images", ["post_id"], name: "index_images_on_post_id", using: :btree
 
+  create_table "map_points", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "fade_in"
+    t.integer  "fade_out"
+    t.integer  "video_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "map_points", ["user_id"], name: "index_map_points_on_user_id", using: :btree
+  add_index "map_points", ["video_id"], name: "index_map_points_on_video_id", using: :btree
+
   create_table "post_images", force: :cascade do |t|
     t.string   "file"
     t.string   "alt"
@@ -96,7 +112,18 @@ ActiveRecord::Schema.define(version: 20160623171704) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "videos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.text     "synopsis"
+    t.string   "cover"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "featureds", "posts"
   add_foreign_key "images", "posts"
+  add_foreign_key "map_points", "users"
+  add_foreign_key "map_points", "videos"
   add_foreign_key "post_images", "posts"
 end
