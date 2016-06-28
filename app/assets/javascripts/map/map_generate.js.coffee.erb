@@ -6,7 +6,7 @@ window.initMap = ->
 
   updateMapMenu = (video_title, synopsis, id, timestamp, url, watch_btn_title) ->
       $('#markTitle').text video_title 
-      $('#markContent').text synopsis
+      $('#markContent').html synopsis
       $('#watch-sub-episode').data 
         video_id: id,
         timestamp: timestamp,
