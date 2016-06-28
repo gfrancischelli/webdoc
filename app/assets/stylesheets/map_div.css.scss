@@ -21,7 +21,7 @@
 	
 	> .card { height: 100%; }
       
-	.content { text-align: left; }
+	.content { font-size: 14px; }
 	.card-title { text-align: center; }
 
 	.cover-img {
@@ -31,6 +31,7 @@
 	}
 
 	.btn-watch {
+		bottom: 1.5rem;
 		font-size: 1rem;
 		@extend .-center-x;
 	}
