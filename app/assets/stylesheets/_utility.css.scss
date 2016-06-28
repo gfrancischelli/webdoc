@@ -1,0 +1,44 @@
+// Navbar height: 6.5vh
+//  Therefore 2vh pad
+.-default-padding {
+	padding: 1rem 2rem;
+	padding-top: 8.5vh;
+}
+
+
+
+.hidden { display: none !important;}
+
+
+
+.-center-x {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.-center-y {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.-center-x-y {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+@mixin mixin-clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

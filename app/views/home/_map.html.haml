@@ -1,13 +1,13 @@
 .row
     #mapInfoDisplay.MapInfos.col-sm-5
         .card
-            = image_tag('casa_da_farinha.jpg', id: "cover-img", class: "img-fluid")
+            = image_tag('casa_da_farinha.jpg', id: "coverImg", class: "img-fluid cover-img hidden")
             .card-block
                 .card-title
-                    %h3#markTitle.info-display-title 
-                #markContent
-                    %h2.text-xs-center Navegue pelo mapa
-                %a#watch-sub-episode.btn.btn-default{data: {video_id: "0"}, href: "#home"}
+                    %h3#markTitle.text-xs-center
+                #markContent.content
+                    %h2 Navegue pelo mapa
+                %a#watch-sub-episode.btn.btn-primary.btn-watch.js-smooth-scroll{data: {video_id: "0"}, href: "#home", class: "hidden"}
                     Assista
     #map-col.col-sm-7
-        #map-embed
+        #map-embed 

@@ -5,14 +5,13 @@
 window.initMap = ->
 
   updateMapMenu = (video_title, synopsis, id, timestamp, url, watch_btn_title) ->
-      alert 'hey'
       $('#markTitle').text video_title 
       $('#markContent').text synopsis
       $('#watch-sub-episode').data 
         video_id: id,
         timestamp: timestamp,
         video_url: url
-      $('#mapInfoDisplay *:hidden').fadeIn(650)
+      $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650)
 
 
   casa_da_farinha = {

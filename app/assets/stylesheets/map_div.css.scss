@@ -1,43 +1,44 @@
-#mapa {
-	padding: 1rem 2rem;
-	padding-top: 8.5vh;
-	height: 100vh;
+@import 'utility';
 
-	.row { height: 100%; }
+
+//  Basic settings
+// 100% heights allows google maps embed to work
+#mapa {
+	height: 100vh;
+	@extend .-default-padding;
+
+	.row 		{ height: 100%; }
+	#map-col	{ height: 100%; }
+	#map-embed	{ height: 100%; }
 }
 
+
+// Map information displayer
+//
 .MapInfos {
 	height: 100%;
-	.card {	height: 100%; }
+	text-align: left;
+	
+	> .card { height: 100%; }
       
-	.MapInfos__content {
-		text-align: left;
+	.content { text-align: left; }
+	.card-title { text-align: center; }
+
+	.cover-img {
+		display: block;
+		max-height: 25%;
+		margin: 0 auto;
 	}
 
-	#watch-sub-episode {
+	.btn-watch {
+		display: block;
 		position: absolute;
-		bottom: 0.7rem;
-		left: 50% - 12.5%;
-		display: none;
+		bottom: 1rem;
 		font-size: 1rem;
-
-		.glyphicon { margin-right: 0.5rem; }
+		@extend .-center-x;
 	}
-}
 
-#cover-img {
-	display: block;
-	max-height: 25%;
-	margin: 0 auto;
-}
-
-
-
-#map-col {
-	height: 100%;
-}
-
-#map-embed {
-	background-color: #fff;
-	height: 100%;
+	h2 {
+		@extend .-center-x-y;
+	}
 }
