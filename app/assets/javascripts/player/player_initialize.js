@@ -1,6 +1,6 @@
 
 function onYouTubeIframeAPIReady() {
-  var url = "ar_VmlFKY2I";
+  var url =  $('#player-container').data('video-url')
   var player;
   player = new YT.Player('youtube', {
     videoId: url,
