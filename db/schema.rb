@@ -11,88 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628235704) do
+ActiveRecord::Schema.define(version: 20160630001201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.string   "cover"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "eventos", force: :cascade do |t|
-    t.string   "name"
-    t.string   "date"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "featureds", force: :cascade do |t|
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "featureds", ["post_id"], name: "index_featureds_on_post_id", using: :btree
-
-  create_table "images", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "images", ["post_id"], name: "index_images_on_post_id", using: :btree
-
   create_table "map_points", force: :cascade do |t|
-    t.string   "name"
-    t.text     "content"
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "fade_in"
-    t.integer  "fade_out"
-    t.integer  "video_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "lat"
+    t.string   "lng"
+    t.integer  "video_post_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "map_points", ["user_id"], name: "index_map_points_on_user_id", using: :btree
-  add_index "map_points", ["video_id"], name: "index_map_points_on_video_id", using: :btree
-
-  create_table "post_images", force: :cascade do |t|
-    t.string   "file"
-    t.string   "alt"
-    t.string   "hint"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "post_images", ["post_id"], name: "index_post_images_on_post_id", using: :btree
-
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.string   "cover"
-    t.text     "content"
-    t.string   "tag"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "category_id"
-    t.string   "featured"
-    t.integer  "isfeatured"
-  end
+  add_index "map_points", ["video_post_id"], name: "index_map_points_on_video_post_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -136,11 +68,7 @@ ActiveRecord::Schema.define(version: 20160628235704) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "featureds", "posts"
-  add_foreign_key "images", "posts"
-  add_foreign_key "map_points", "users"
-  add_foreign_key "map_points", "videos"
-  add_foreign_key "post_images", "posts"
+  add_foreign_key "map_points", "video_posts"
   add_foreign_key "video_posts", "users"
   add_foreign_key "video_posts", "videos"
 end

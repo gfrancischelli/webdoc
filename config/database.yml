@@ -3,7 +3,7 @@ default: &default
 
 development:
   <<: *default
-  database: alda_database
+  database: webdoc_database
   username: giovanni
 
 # Warning: The database defined as "test" will be erased and
