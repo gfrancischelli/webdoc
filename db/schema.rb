@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630001201) do
+ActiveRecord::Schema.define(version: 20160701170139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "map_points", force: :cascade do |t|
-    t.string   "lat"
-    t.string   "lng"
+    t.integer  "lat"
+    t.integer  "lng"
     t.integer  "video_post_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160630001201) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "fade_out"
   end
 
   add_index "video_posts", ["user_id"], name: "index_video_posts_on_user_id", using: :btree

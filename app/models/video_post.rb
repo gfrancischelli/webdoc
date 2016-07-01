@@ -1,4 +1,5 @@
 class VideoPost < ActiveRecord::Base
-  belongs_to :video
-  belongs_to :user
+  has_one		:map_point
+  belongs_to 	:video
+  belongs_to	:user
 end
