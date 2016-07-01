@@ -6,10 +6,20 @@
 }
 
 
+.text-shadow {
+	text-shadow: 0px 3px 3px rgba(0, 0, 0, 1);
+}
+
 
 .hidden { display: none !important;}
 
 
+
+
+.-anchor-bottom {
+	position: absolute;
+	bottom: 1.2rem
+}
 
 .-center-x {
 	position: absolute;

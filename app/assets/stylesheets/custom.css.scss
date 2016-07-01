@@ -37,6 +37,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.card-deck {
+  display: flex;
+  flex-flow: row wrap;
+}
 
 //  Background Color 
 .bg-brown  { background-color: $brown }

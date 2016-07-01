@@ -1,0 +1,36 @@
+@import 'utility';
+@import 'colors';
+@import 'https://fonts.googleapis.com/css?family=PT+Sans';
+
+//  Basic settings
+// 100% heights allows google maps embed to work
+#episodios {
+	@extend .-default-padding;
+	background-color: $light;
+	font-family: 'PT Sans', sans-serif;
+	text-align: center;
+	
+	.card-deck {
+		justify-content: space-around;
+	}
+
+	.episodios-header {
+		font-weight: bold;
+	}
+}
+
+.episode {
+	
+	flex: 0 1 25%;
+	height: 170px;
+	color: #000;
+	margin: 1.5rem 2%; 
+	
+	img { width: 100% }
+
+	.card-title {
+		// @extend .-center-x-y;
+		font-weight: bold;
+	}
+
+}
