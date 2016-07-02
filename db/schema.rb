@@ -11,20 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701170139) do
+ActiveRecord::Schema.define(version: 20160702010232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "map_points", force: :cascade do |t|
-    t.integer  "lat"
-    t.integer  "lng"
-    t.integer  "video_post_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "map_posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "cooX"
+    t.integer  "cooY"
+    t.integer  "fade_in"
+    t.integer  "fade_out"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "video_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "map_points", ["video_post_id"], name: "index_map_points_on_video_post_id", using: :btree
+  add_index "map_posts", ["user_id"], name: "index_map_posts_on_user_id", using: :btree
+  add_index "map_posts", ["video_id"], name: "index_map_posts_on_video_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -69,7 +77,8 @@ ActiveRecord::Schema.define(version: 20160701170139) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "map_points", "video_posts"
+  add_foreign_key "map_posts", "users"
+  add_foreign_key "map_posts", "videos"
   add_foreign_key "video_posts", "users"
   add_foreign_key "video_posts", "videos"
 end

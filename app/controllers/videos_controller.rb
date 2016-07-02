@@ -3,6 +3,7 @@ class VideosController < ApplicationController
 
 	def index
 		@videos = Video.all
+		@posts = VideoPost.all
 	end
 
 	def show

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MapPointTest < ActiveSupport::TestCase
+class MapPostTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

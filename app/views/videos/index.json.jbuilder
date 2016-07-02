@@ -4,4 +4,3 @@ json.array! @videos do |video|
 	json.posts video.video_posts
 end
 
-

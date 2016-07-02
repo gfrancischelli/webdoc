@@ -15,6 +15,7 @@ function WebDoc() {
 			  });
 	}
 
+
 	function mapGen() {
 		//  Embed Map
 		map = new google.maps.Map(document.getElementById('map-embed'), {
@@ -33,8 +34,11 @@ function WebDoc() {
 		});
 	}
 
+
 	function marksGen() { 
-		console.log('marksgen')
+		for (var i = episodes.length - 1; i >= 0; i--) {
+			console.log(episodes[i]);
+		}
 	}
 
 	return {
@@ -43,6 +47,8 @@ function WebDoc() {
 }
 
 
+
+//  Called when Google Map CDN is complete
 function initMap() {
 	console.log('initMap')
 	var cozinha = WebDoc()
@@ -50,3 +56,13 @@ function initMap() {
 }
 
 
+		// var mark;
+
+		// mark = new google.maps.Marker({
+		//   position: {
+		//     lat: point.lat,
+		//     lng: point.lng
+		//   },
+		//   title: point.title,
+		//   map: map
+		// });
