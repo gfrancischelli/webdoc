@@ -1,16 +1,16 @@
 %h1.episodios-header Episódios
 .card-deck
 	- @videos.each do |video|
-		.card.card-inverse.episode
-			= image_tag 'casa_da_farinha.jpg', class: "card-img"
-			.card-img-overlay
-				%h2.card-title.text-shadow= video.title
-				%br
-				%button.btn.btn-secondary Assista
+		.card.episode
+			= image_tag 'casa_da_farinha.jpg', class: "card-img-top", width: "380px"
+			.card-block
+				%h4.card-title= video.title
+				%p.card-text Lorem Ipsum sit dolor amet
+				%button.btn.btn-primary Assista
 	- many_videos = (@videos.length % 6)
 	- if many_videos != 0
 		- for i in 1 .. ( 6 - many_videos)
 			.card.episode
 				.card-block
-					%h2.card-title Em breve
+					%h2.soon-title Em breve
 

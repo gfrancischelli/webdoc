@@ -8,29 +8,32 @@
 	@extend .-default-padding;
 	background-color: $light;
 	font-family: 'PT Sans', sans-serif;
-	text-align: center;
+	max-height: 1000vh;
 	
 	.card-deck {
 		justify-content: space-around;
 	}
 
 	.episodios-header {
+		text-align: center;
 		font-weight: bold;
 	}
 }
 
 .episode {
 	
-	flex: 0 1 25%;
-	height: 170px;
+	flex: 0 1 300px;
 	color: #000;
-	margin: 1.5rem 2%; 
-	
-	img { width: 100% }
+	margin: 1.5rem 3%; 
+	height: 340px;
+	box-shadow: 0 3px 5px rgba(2, 2, 2, 0.6);
 
-	.card-title {
-		// @extend .-center-x-y;
-		font-weight: bold;
+	img { 
+		width: 300px;
+		height: 180px;
 	}
 
+	.soon-title {
+		@extend .-center-x-y
+	}
 }
