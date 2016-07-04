@@ -1,7 +1,6 @@
 function WebdocPlayer() {
 
-    var url  = $('#player-container').data('video-url');
-    var video_id = 1;
+    var video_id = $('#player-container').data('video-id');
     var player = { 
         playing: false,
         youtube: {}
@@ -15,8 +14,8 @@ function WebdocPlayer() {
             .then(function(response) { return response.json(); })
             .then(function(episode_json) {
                 episode = episode_json;
-
-                youtubeGen(url)
+                console.log(episode)
+                youtubeGen(episode.url)
             });
     }
 
