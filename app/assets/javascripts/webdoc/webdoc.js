@@ -1,19 +1,15 @@
-function WebDoc() {
+function WebdocMap() {
 
-	var episodes = {}
-	var map_posts = {}
-	var marks = {}
+	// Sao Paulo
 	var map_coordinates = { lat: -22.373416, lng: -48.412382 }
+
+	// JSON array with map_post.json
+	// After marksGen() every post has a (google maps) mark
+	var map_posts 
 
 	// Episodes_url = Video.all.json
 	// Call mapGen() then marksGen()
 	function init() {	
-		// fetch('/videos.json')
-		// 	.then(function(response) { return response.json(); })
-		// 	.then(function(videos_json) {
-		// 	    episodes = videos_json;
-		// 	});
-
 		fetch('/map_posts.json')
 			.then(function(response) { return response.json(); })
 			.then(function(marks_json) {
@@ -43,8 +39,8 @@ function WebDoc() {
 	}
 
 
-	// Creates new Google Maps Marker
-	// Stores in point object, mark property
+	// Creates a new Google Maps Marker
+	// and stores mark in point object
 	function marksGen() { 
 		map_posts.forEach(function(point) {
 			point.mark = new google.maps.Marker({
@@ -58,6 +54,7 @@ function WebDoc() {
 			});
 		})
 	}
+
 
 	function updateMapMenu(post) {
 		$('#markTitle').text(post.title)
@@ -79,7 +76,7 @@ function WebDoc() {
 //  Called when Google Map CDN is complete
 function initMap() {
 	console.log('initMap')
-	WebDoc().init('/videos.json')
+	WebdocMap().init('/videos.json')
 }
 
 
