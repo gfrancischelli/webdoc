@@ -1,23 +1,32 @@
 function WebDoc() {
 
-	var episodes
+	var episodes = {}
+	var map_posts = {}
+	var marks = {}
 	var map_coordinates = { lat: -22.373416, lng: -48.412382 }
 
-	function init(episodes_url) {	
-		fetch('/videos.json').then(function(response) {
-			    return response.json();
-			  }).then(function(videos_json) {
-			    episodes = videos_json;
+	// Episodes_url = Video.all.json
+	// Call mapGen() then marksGen()
+	function init() {	
+		// fetch('/videos.json')
+		// 	.then(function(response) { return response.json(); })
+		// 	.then(function(videos_json) {
+		// 	    episodes = videos_json;
+		// 	});
 
+		fetch('/map_posts.json')
+			.then(function(response) { return response.json(); })
+			.then(function(marks_json) {
+				map_posts = marks_json;
 			    mapGen();
-			    marksGen();
-
-			  });
+				marksGen();
+			});
 	}
 
 
+	//  Embed Map in #map-embed element
+	//  Then responsive resize event listener
 	function mapGen() {
-		//  Embed Map
 		map = new google.maps.Map(document.getElementById('map-embed'), {
 		  zoom: 7,
 		  center: map_coordinates,
@@ -25,7 +34,6 @@ function WebDoc() {
 		  scrollwheel: false
 		});
 
-		//  Responsive Map Resize
 		google.maps.event.addDomListener(window, "resize", function() {
 		  var center;
 		  center = map.getCenter();
@@ -36,9 +44,31 @@ function WebDoc() {
 
 
 	function marksGen() { 
-		for (var i = episodes.length - 1; i >= 0; i--) {
-			console.log(episodes[i]);
+		for (var i = map_posts.length - 1; i >= 0; i--) {
+			point = map_posts[i]
+
+			// Creates new Google Maps Marker
+			// Stores in point object, mark property
+			point.mark = new google.maps.Marker({
+			  position: point.coordinates,
+			  title: point.title,
+			  map: map
+			});
+
+			point.mark.addListener('click', function() {
+				updateMapMenu(point)
+			});
 		}
+	}
+
+	function updateMapMenu(post) {
+		$('#markTitle').text(post.title)
+		$('#markContent').html(post.content)
+		$('#watch-sub-episode').data({
+			video_id: post.id,
+			timestamp: post.timestamp
+		}) 
+		$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650)
 	}
 
 	return {
@@ -51,8 +81,7 @@ function WebDoc() {
 //  Called when Google Map CDN is complete
 function initMap() {
 	console.log('initMap')
-	var cozinha = WebDoc()
-	cozinha.init('/videos.json')
+	WebDoc().init('/videos.json')
 }
 
 
