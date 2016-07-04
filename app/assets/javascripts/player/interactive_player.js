@@ -1,19 +1,27 @@
 function WebdocPlayer() {
 
-    var video_id = $('#player-container').data('video-id');
+    // DONT FORGET TO USE THIS ONE
+    // var video_id = $('#player-container').data('video-id');
+    var video_id = 1
+    var episode = {}
+
     var player = { 
         playing: false,
         youtube: {},
-        start:  function start() {
-                    this.interval = setInterval(function(){
-                    console.log('interval');
-                    },1000)
-                },
-        stop:   function stop() { clearInterval(this.interval) }
+        stop:   function stop() { clearInterval(this.interval) },
+        start:  function start(start_time) { 
+                    this.interval = setInterval( 
+                        function() { 
+                            updateButtons(start_time)
+                            start_time ++
+                            },1000)
+        }
     }
 
-    var episode = {}
 
+
+
+    
     function init() {
         console.log('init');
         fetch('/videos/' + video_id + '.json')
@@ -24,6 +32,10 @@ function WebdocPlayer() {
                 youtubeGen(episode.url)
             });
     }
+
+
+
+
 
     function youtubeGen(url) {
         player.youtube = new YT.Player('youtube', {
@@ -42,10 +54,8 @@ function WebdocPlayer() {
             if (!player.playing) {
                 $("#main-navbar").fadeToggle()
                 player.playing = true
-
                 current_time = player.youtube.getCurrentTime();
-                console.log(current_time);
-                player.start();
+                player.start(current_time);
             }
         }
 
@@ -57,12 +67,37 @@ function WebdocPlayer() {
     }
 
 
-    var publicAPI = {
-        init: init()
+
+
+
+    function updateButtons(current_time) {
+        episode.posts.forEach(function(post) {
+            var fade_in = post.fade_in;
+            var fade_out = post.fade_out;
+
+            if (current_time >= fade_in &&
+                current_time <= fade_out) {
+                console.log(fade_in);
+            }
+
+            if (current_time < fade_in &&
+                current_time > fade_out) {
+                console.log(fade_in);
+            }
+
+
+        });
     }
 
-    return { publicAPI }
+
+
+
+    var publicAPI = { init: init() }
+
+    return  { publicAPI }
 }
+
+
 
 
 function onYouTubeIframeAPIReady() {
