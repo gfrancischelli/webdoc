@@ -3,7 +3,13 @@ function WebdocPlayer() {
     var video_id = $('#player-container').data('video-id');
     var player = { 
         playing: false,
-        youtube: {}
+        youtube: {},
+        start:  function start() {
+                    this.interval = setInterval(function(){
+                    console.log('interval');
+                    },1000)
+                },
+        stop:   function stop() { clearInterval(this.interval) }
     }
 
     var episode = {}
@@ -36,12 +42,17 @@ function WebdocPlayer() {
             if (!player.playing) {
                 $("#main-navbar").fadeToggle()
                 player.playing = true
+
+                current_time = player.youtube.getCurrentTime();
+                console.log(current_time);
+                player.start();
             }
         }
 
         if (event.data == 2) {
             $("#main-navbar").fadeToggle()
-            player.playing = false
+            player.playing = false;
+            player.stop()
         }
     }
 
