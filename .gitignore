@@ -18,4 +18,4 @@
 
 config/database/yml
 config/secrets.yml
-/db/migrate/20160702005644_drop_map_point_table.rb
+db/migrate/20160702005644_drop_map_point_table.rb
