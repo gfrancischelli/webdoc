@@ -43,12 +43,10 @@ function WebDoc() {
 	}
 
 
+	// Creates new Google Maps Marker
+	// Stores in point object, mark property
 	function marksGen() { 
-		for (var i = map_posts.length - 1; i >= 0; i--) {
-			point = map_posts[i]
-
-			// Creates new Google Maps Marker
-			// Stores in point object, mark property
+		map_posts.forEach(function(point) {
 			point.mark = new google.maps.Marker({
 			  position: point.coordinates,
 			  title: point.title,
@@ -58,7 +56,7 @@ function WebDoc() {
 			point.mark.addListener('click', function() {
 				updateMapMenu(point)
 			});
-		}
+		})
 	}
 
 	function updateMapMenu(post) {
