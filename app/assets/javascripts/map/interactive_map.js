@@ -3,8 +3,9 @@ function WebdocMap() {
 	// Sao Paulo
 	var map_coordinates = { lat: -22.373416, lng: -48.412382 }
 
-	// JSON array with map_post.json
-	// After marksGen() every post has a (google maps) mark
+	// JSON array with ( rb ).MapPost.all.json
+	// After marksGen() every post inside map_posts
+	// has a mark (google maps mark)
 	var map_posts 
 
 	// Episodes_url = Video.all.json
@@ -27,7 +28,7 @@ function WebdocMap() {
 		  zoom: 7,
 		  center: map_coordinates,
 		  mapTypeId: google.maps.MapTypeId.HYBRID,
-		  scrollwheel: false
+		  scrollwheel: false,
 		});
 
 		google.maps.event.addDomListener(window, "resize", function() {
@@ -39,14 +40,14 @@ function WebdocMap() {
 	}
 
 
-	// Creates a new Google Maps Marker
-	// and stores mark in point object
+	//  For each post in map_post 
+	//  create and store a new Google Maps Marker
 	function marksGen() { 
 		map_posts.forEach(function(point) {
 			point.mark = new google.maps.Marker({
 			  position: point.coordinates,
 			  title: point.title,
-			  map: map
+			  map: map,
 			});
 
 			point.mark.addListener('click', function() {

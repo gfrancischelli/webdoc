@@ -1,8 +1,7 @@
 function WebdocPlayer() {
 
     // DONT FORGET TO USE THIS ONE
-    // var video_id = $('#player-container').data('video-id');
-    var video_id = 1
+    var video_id = $('#player-container').data('video-id');
     var episode = {}
 
     var player = { 
@@ -22,10 +21,10 @@ function WebdocPlayer() {
 
 
 
-    
+    // episodes = Video.all.json
     function init() {
         console.log('init');
-        fetch('/videos/' + video_id + '.json')
+        fetch('/videos/${video_id}.json')
             .then(function(response) { return response.json(); })
             .then(function(episode_json) {
                 episode = episode_json;
