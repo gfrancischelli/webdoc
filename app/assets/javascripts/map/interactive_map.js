@@ -60,10 +60,13 @@ function WebdocMap() {
 	function updateMapMenu(post) {
 		$('#markTitle').text(post.title)
 		$('#markContent').html(post.content)
-		$('#watch-sub-episode').data({
-			video_id: post.id,
-			timestamp: post.timestamp
-		}) 
+		$('.js-watch')
+			.attr( 
+			  { "data-fade-in":   post.fade_in,
+				"data-video-id":  post.id,
+				"data-video-url": post.url, }
+			); 
+
 		$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650)
 	}
 

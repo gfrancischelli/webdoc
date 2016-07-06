@@ -12,7 +12,7 @@ class MapPostsController < ApplicationController
 	private
 
 	def set_video
-		@video = Video.all.find(params[:id])
+		@video = Video.all.find(params[:video_id])
 	end
 
 end
