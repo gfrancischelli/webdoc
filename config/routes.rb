@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources  :videos
+  resources  :videos do
+    resources  :map_posts
+    resources  :video_posts
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   root to: 'home#index', as: '/cozinhacaipira'
   get 'cozinhacaipira', to: 'home#index'
-  get 'map_posts', to: 'videos#map_posts'
+  # get 'map_posts', to: 'videos#map_posts'
+  # get 'posts', to: 'videos#posts'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

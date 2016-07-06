@@ -35,7 +35,19 @@ function WebdocPlayer() {
     }
 
 
+    function changeVideo() {
+        video_id = $('#player-container').data('video-id');
 
+        var video_post_url = '/videos/${video_id}/video_posts.json'
+        var   map_post_url = '/videos/${video_id}/map_posts.json'
+
+        fetch(video_post_url)
+            .then(function(response) { return response.json();})
+            .then(function(video_posts_json) {
+                video_posts = video_posts_json;
+                console.log(video_posts)
+            })
+    }
 
 
     function youtubeGen(url) {
