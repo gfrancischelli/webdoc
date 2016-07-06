@@ -10,10 +10,11 @@ function WebdocPlayer() {
         youtube: {},
         stop:   function stop() { clearInterval(this.interval) },
         start:  function start(start_time) { 
+                    var time = start_time;
                     this.interval = setInterval( 
                         function() { 
-                            updateButtons(start_time)
-                            start_time ++
+                            updateButtons(time);
+                            time ++
                             },1000)
         }
     }
@@ -48,6 +49,7 @@ function WebdocPlayer() {
             }
         });
     }
+
 
     function onPlayerStateChange(event) {
         if (event.data == 1) {
