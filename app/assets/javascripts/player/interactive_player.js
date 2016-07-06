@@ -35,9 +35,7 @@ function WebdocPlayer() {
     }
 
 
-    function changeVideo() {
-        video_id = $('#player-container').data('video-id');
-
+    function changeVideo(video_id) {
         var video_post_url = '/videos/${video_id}/video_posts.json'
         var   map_post_url = '/videos/${video_id}/map_posts.json'
 
