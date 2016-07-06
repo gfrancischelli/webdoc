@@ -10,4 +10,3 @@ jQuery(document).ready ->
 
   $("iframe").addClass 'embed-responsive-item'
   
-  

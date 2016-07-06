@@ -10,10 +10,6 @@ class VideosController < ApplicationController
 		@video = Video.find(params[:id])
 	end
 
-	def map_posts
-		@map_posts = MapPost.all
-	end
-
 	private
 
 		def set_video
