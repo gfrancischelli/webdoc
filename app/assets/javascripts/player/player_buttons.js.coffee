@@ -1,10 +1,10 @@
-window.onPlayerStateChange = (event) ->
-  # On Play
-  if event.data == 1
+# window.onPlayerStateChange = (event) ->
+#   # On Play
+#   if event.data == 1
     
-    if !window.playing
-        $("#main-navbar").fadeToggle()
-        window.playing = true
+#     if !window.playing
+#         $("#main-navbar").fadeToggle()
+#         window.playing = true
     
     # Relative tu BUTTON CONSTRUCTOR -------------------------    
     # clearInterval(window.playerInterval)
@@ -34,10 +34,10 @@ window.onPlayerStateChange = (event) ->
     #   return), 500
   
   # On Pause
-  if event.data == 2
-    $("#main-navbar").fadeToggle()
-    window.playing = false
+  # if event.data == 2
+  #   $("#main-navbar").fadeToggle()
+  #   window.playing = false
 
-    # Relative tu BUTTON CONSTRUCTOR -------------------------    
-    # clearInterval(window.playerInterval)
-  return
+  #   # Relative tu BUTTON CONSTRUCTOR -------------------------    
+  #   # clearInterval(window.playerInterval)
+  # return

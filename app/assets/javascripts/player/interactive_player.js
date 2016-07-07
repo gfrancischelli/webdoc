@@ -2,7 +2,7 @@ function WebdocPlayer() {
 
     // DONT FORGET TO USE THIS ONE
     // var video_id = $('#player-container').data('video-id');
-    var video_id = 1
+    var video_id = 1;
 
     const player = { 
         youtube: {},
@@ -14,10 +14,10 @@ function WebdocPlayer() {
                     let time = start_time;
                     this.interval = setInterval(function() { 
                             drawButtons(time);
-                            time ++
+                            time ++;
                             },1000)
         },
-    }
+    };
 
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
@@ -29,7 +29,7 @@ function WebdocPlayer() {
                 console.log(player.current_episode.url)
                 youtubeGen(player.current_episode.url)
             });
-    }
+    };
 
     // onPlayerReady: Add onClick to .js-watch
     // onPlayerStateChange: Handles button drawing
@@ -42,7 +42,7 @@ function WebdocPlayer() {
             'onStateChange': onPlayerStateChange,
             }
         });
-    }
+    };
 
     // .js-watch events
     function onPlayerReady() {
@@ -77,8 +77,8 @@ function WebdocPlayer() {
     // Fetches new video into player.current_episode
     // Load new player.youtube
     function changeVideo(video_id, video_url, fade_in) {
-        let video_post_url = `/videos/${video_id}/video_posts.json`
-        let   map_post_url = `/videos/${video_id}/map_posts.json`
+        let video_post_url = `/videos/${video_id}/video_posts.json`;
+        let   map_post_url = `/videos/${video_id}/map_posts.json`;
 
         fetch(video_post_url)
             .then(function(response) { return response.json(); })
@@ -118,7 +118,7 @@ function WebdocPlayer() {
 
 
 
-    const publicAPI = { 
+    const publicAPI = {
         init: init(), 
         changeVideo: changeVideo(),
     }

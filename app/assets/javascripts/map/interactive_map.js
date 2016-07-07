@@ -1,16 +1,16 @@
 function WebdocMap() {
 
 	// Sao Paulo
-	const map_coordinates = { lat: -22.373416, lng: -48.412382 }
+	const map_coordinates = { lat: -22.373416, lng: -48.412382 };
 
 	// JSON array with ( rb ).MapPost.all.json
 	// After marksGen() every post inside map_posts
 	// has a mark (google maps mark)
-	let map_posts 
+	let map_posts;
 
 	// Episodes_url = Video.all.json
 	// Call mapGen() then marksGen()
-	function init() {	
+	function init() {
 		fetch('/map_posts.json')
 			.then(function(response) { return response.json(); })
 			.then(function(marks_json) {
@@ -40,7 +40,7 @@ function WebdocMap() {
 	}
 
 
-	//  For each post in map_post 
+	//  For each post in map_post
 	//  create and store a new Google Maps Marker
 	function marksGen() { 
 		map_posts.forEach(function(point) {
@@ -60,8 +60,8 @@ function WebdocMap() {
 
 
 	function updateMapMenu(post) {
-		$('#markTitle').text(post.title)
-		$('#markContent').html(post.content)
+		$('#markTitle').text(post.title);
+		$('#markContent').html(post.content);
 		$('.js-watch')
 			.attr( 
 			  { "data-fade-in":   post.fade_in,
