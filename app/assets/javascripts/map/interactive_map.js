@@ -1,7 +1,7 @@
 function WebdocMap() {
 
 	// Sao Paulo
-	use strict const map_coordinates = { lat: -22.373416, lng: -48.412382 };
+	const map_coordinates = { lat: -22.373416, lng: -48.412382 };
 
 	// JSON array with ( rb ).MapPost.all.json
 	// After marksGen() every post inside map_posts
