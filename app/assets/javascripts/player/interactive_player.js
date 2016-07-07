@@ -81,7 +81,7 @@ function WebdocPlayer() {
         var   map_post_url = `/videos/${video_id}/map_posts.json`;
 
         fetch(video_post_url)
-            .then(function(response) { return response.json(); })
+            .then(function(response) { return response.json() })
             .then(function(posts_json) {
                 player.youtube.loadVideoById(video_url);
                 player.current_episode.video_posts = posts_json;
