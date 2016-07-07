@@ -9,21 +9,25 @@ function WebdocPlayer() {
         playing: false,
         interval: {},
         current_episode: {},
-        stopButtons:  function stop() { clearInterval(this.interval) },
-        activateButtons:  function start(start_time) { 
-                    var time = start_time;
-                    this.interval = setInterval(function() { 
-                            drawButtons(time);
-                            time ++;
-                            },1000)
+        stopButtons:  function stop() {
+          clearInterval(this.interval);
         },
-    };
+        activateButtons:  function start(start_time) { 
+            var time = start_time;
+            this.interval = setInterval(function() { 
+                    drawButtons(time);
+                    time ++;
+                    },1000);
+        },
+    }
 
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
     function init() {
         fetch(`/videos/${video_id}.json`)
-            .then(function(response) { return response.json() })
+            .then(function(response) { 
+                return response.json()
+            })
             .then(function(episode) {
                 player.current_episode = episode;
                 console.log(player.current_episode.url);

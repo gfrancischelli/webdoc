@@ -1,7 +1,7 @@
 function WebdocMap() {
 
 	// Sao Paulo
-	const map_coordinates = { lat: -22.373416, lng: -48.412382 };
+	use strict const map_coordinates = { lat: -22.373416, lng: -48.412382 };
 
 	// JSON array with ( rb ).MapPost.all.json
 	// After marksGen() every post inside map_posts
@@ -12,7 +12,9 @@ function WebdocMap() {
 	// Call mapGen() then marksGen()
 	function init() {
 		fetch('/map_posts.json')
-			.then(function(response) { return response.json() })
+			.then(function(response) { 
+				return response.json();
+			})
 			.then(function(marks_json) {
 				map_posts = marks_json;
 			    mapGen();
