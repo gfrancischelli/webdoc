@@ -6,7 +6,7 @@ function WebdocMap() {
 	// JSON array with ( rb ).MapPost.all.json
 	// After marksGen() every post inside map_posts
 	// has a mark (google maps mark)
-	let map_posts;
+	var map_posts;
 
 	// Episodes_url = Video.all.json
 	// Call mapGen() then marksGen()
@@ -44,7 +44,7 @@ function WebdocMap() {
 	//  create and store a new Google Maps Marker
 	function marksGen() { 
 		map_posts.forEach(function(point) {
-			let this_point = point;
+			var this_point = point;
 			this_point.mark = new google.maps.Marker({
 			  position: point.coordinates,
 			  title: point.title,
@@ -82,7 +82,7 @@ function WebdocMap() {
 }
 
 
-//  Called when Google Map CDN is complete
+//  Called when Google Map CDN is compvare
 function initMap() {
 	console.log('initMap');
 	WebdocMap().init('/videos.json');

@@ -11,7 +11,7 @@ function WebdocPlayer() {
         current_episode: {},
         stopButtons:  function stop() { clearInterval(this.interval) },
         activateButtons:  function start(start_time) { 
-                    let time = start_time;
+                    var time = start_time;
                     this.interval = setInterval(function() { 
                             drawButtons(time);
                             time ++;
@@ -77,8 +77,8 @@ function WebdocPlayer() {
     // Fetches new video into player.current_episode
     // Load new player.youtube
     function changeVideo(video_id, video_url, fade_in) {
-        let video_post_url = `/videos/${video_id}/video_posts.json`;
-        let   map_post_url = `/videos/${video_id}/map_posts.json`;
+        var video_post_url = `/videos/${video_id}/video_posts.json`;
+        var   map_post_url = `/videos/${video_id}/map_posts.json`;
 
         fetch(video_post_url)
             .then(function(response) { return response.json(); })
@@ -94,7 +94,7 @@ function WebdocPlayer() {
 
     // TODO join map_posts + video_posts
     function drawButtons(current_time) {
-        let posts = []
+        var posts = []
         player.current_episode.posts.forEach(function(post) {
             var fade_in = post.fade_in;
             var fade_out = post.fade_out;
