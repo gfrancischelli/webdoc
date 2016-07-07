@@ -24,7 +24,7 @@ function WebdocPlayer() {
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
     function init() {
-        fetch(`/videos/${video_id}.json`)
+        fetch("/videos/" + video_id + ".json")
             .then(function(response) { 
                 return response.json()
             })
@@ -81,8 +81,8 @@ function WebdocPlayer() {
     // Fetches new video into player.current_episode
     // Load new player.youtube
     function changeVideo(video_id, video_url, fade_in) {
-        var video_post_url = `/videos/${video_id}/video_posts.json`;
-        var   map_post_url = `/videos/${video_id}/map_posts.json`;
+        var video_post_url = "/videos/" + video_id + "/video_posts.json";
+        var   map_post_url = "/videos/" + video_id + "/map_posts.json";
 
         fetch(video_post_url)
             .then(function(response) { return response.json() })
