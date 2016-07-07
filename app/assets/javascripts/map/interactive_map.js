@@ -44,8 +44,7 @@ function WebdocMap() {
 	//  create and store a new Google Maps Marker
 	function marksGen() { 
 		map_posts.forEach(function(point) {
-			let this_point = point
-
+			let this_point = point;
 			this_point.mark = new google.maps.Marker({
 			  position: point.coordinates,
 			  title: point.title,
@@ -53,7 +52,7 @@ function WebdocMap() {
 			});
 
 			this_point.mark.addListener('click', function() {
-				updateMapMenu(this_point)
+				updateMapMenu(this_point);
 			});
 		})
 	}
@@ -69,15 +68,15 @@ function WebdocMap() {
 				"data-video-url": post.url, }
 			); 
 
-		$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650)
-	}
+		$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
+	};
 
 
 
 	const publicApi = {
 		init:  init(),
 		posts: map_posts,
-	}
+	};
 
 	return { publicApi }
 }
@@ -85,6 +84,6 @@ function WebdocMap() {
 
 //  Called when Google Map CDN is complete
 function initMap() {
-	console.log('initMap')
-	WebdocMap().init('/videos.json')
-}
+	console.log('initMap');
+	WebdocMap().init('/videos.json');
+};

@@ -23,11 +23,11 @@ function WebdocPlayer() {
     // video_id = closure #player-container
     function init() {
         fetch(`/videos/${video_id}.json`)
-            .then(function(response) { return response.json(); })
+            .then(function(response) { return response.json() })
             .then(function(episode) {
                 player.current_episode = episode;
-                console.log(player.current_episode.url)
-                youtubeGen(player.current_episode.url)
+                console.log(player.current_episode.url);
+                youtubeGen(player.current_episode.url);
             });
     };
 
@@ -53,8 +53,8 @@ function WebdocPlayer() {
             var video_url = button.data('videoUrl');
 
             changeVideo(video_id, video_url, fade_in);
-        })
-    }
+        });
+    };
 
     // Handles button drawing functions
     function onPlayerStateChange(event) {
@@ -68,11 +68,11 @@ function WebdocPlayer() {
         }
 
         if (event.data == 2) {
-            $("#main-navbar").fadeToggle()
+            $("#main-navbar").fadeToggle();
             player.playing = false;
             player.stopButtons();
         }
-    }
+    };
 
     // Fetches new video into player.current_episode
     // Load new player.youtube
@@ -86,7 +86,7 @@ function WebdocPlayer() {
                 player.youtube.loadVideoById(video_url);
                 player.current_episode.video_posts = posts_json;
             })
-    }
+    };
 
 
 
@@ -121,16 +121,16 @@ function WebdocPlayer() {
     const publicAPI = {
         init: init(), 
         changeVideo: changeVideo(),
-    }
+    };
 
-    return  { publicAPI }
-}
+    return  { publicAPI };
+};
 
 
 
 
 function onYouTubeIframeAPIReady() {
-    console.log('onYoutubeAPIReady')
-    WebdocPlayer().init()
-}
+    console.log('onYoutubeAPIReady');
+    WebdocPlayer().init();
+};
 
