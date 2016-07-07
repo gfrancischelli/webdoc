@@ -13,10 +13,10 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'mini_portile2', '~> 2.1'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
-gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass', '~> 4.6.2'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'devise', '~> 4.1', '>= 4.1.1'
-gem 'babel-transpiler'
+gem "browserify-rails"
 
 source "https://rails-assets.org" do
   gem "rails-assets-tether"
