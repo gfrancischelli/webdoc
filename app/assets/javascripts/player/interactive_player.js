@@ -15,10 +15,10 @@ function WebdocPlayer() {
         activateButtons:  function start(start_time) { 
             var time = start_time;
             this.interval = setInterval(function() { 
-                    drawButtons(time);
-                    time ++;
-                    },1000);
-        },
+              drawButtons(time);
+              time ++;
+              },1000);
+        }
     }
 
     // episode = ~rb~Video.find(video_id)
@@ -43,7 +43,7 @@ function WebdocPlayer() {
             playerVars: { fs: false },
             events: {
             'onReady': onPlayerReady, 
-            'onStateChange': onPlayerStateChange,
+            'onStateChange': onPlayerStateChange
             }
         });
     };
@@ -85,7 +85,9 @@ function WebdocPlayer() {
         var   map_post_url = "/videos/" + video_id + "/map_posts.json";
 
         fetch(video_post_url)
-            .then(function(response) { return response.json() })
+            .then(function(response) { 
+                return response.json();
+            })
             .then(function(posts_json) {
                 player.youtube.loadVideoById(video_url);
                 player.current_episode.video_posts = posts_json;
@@ -98,7 +100,7 @@ function WebdocPlayer() {
 
     // TODO join map_posts + video_posts
     function drawButtons(current_time) {
-        var posts = []
+        var posts = [];
         player.current_episode.posts.forEach(function(post) {
             var fade_in = post.fade_in;
             var fade_out = post.fade_out;

@@ -30,7 +30,7 @@ function WebdocMap() {
 		  zoom: 7,
 		  center: map_coordinates,
 		  mapTypeId: google.maps.MapTypeId.HYBRID,
-		  scrollwheel: false,
+		  scrollwheel: false
 		});
 
 		google.maps.event.addDomListener(window, "resize", function() {
@@ -50,7 +50,7 @@ function WebdocMap() {
 			this_point.mark = new google.maps.Marker({
 			  position: point.coordinates,
 			  title: point.title,
-			  map: map,
+			  map: map
 			});
 
 			this_point.mark.addListener('click', function() {
@@ -64,11 +64,11 @@ function WebdocMap() {
 		$('#markTitle').text(post.title);
 		$('#markContent').html(post.content);
 		$('.js-watch')
-			.attr( 
-			  { "data-fade-in":   post.fade_in,
-				"data-video-id":  post.id,
-				"data-video-url": post.url, }
-			); 
+			.attr({
+			  "data-fade-in":   post.fade_in,
+			  "data-video-id":  post.id,
+			  "data-video-url": post.url
+			}); 
 
 		$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
 	};
@@ -77,7 +77,7 @@ function WebdocMap() {
 
 	const publicApi = {
 		init:  init(),
-		posts: map_posts,
+		posts: map_posts
 	};
 
 	return { publicApi }
