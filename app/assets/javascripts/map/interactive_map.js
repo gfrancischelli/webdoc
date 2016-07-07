@@ -12,7 +12,7 @@ function WebdocMap() {
 	// Call mapGen() then marksGen()
 	function init() {
 		fetch('/map_posts.json')
-			.then(function(response) { return response.json(); })
+			.then(function(response) { return response.json() })
 			.then(function(marks_json) {
 				map_posts = marks_json;
 			    mapGen();
