@@ -42,15 +42,16 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.3.6.2)
       execjs
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap (4.0.0.alpha3)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
-    browserify-rails (3.1.0)
-      railties (>= 4.0.0, < 5.1)
-      sprockets (>= 3.5.2)
     builder (3.2.2)
     byebug (9.0.5)
     capistrano (3.5.0)
@@ -197,8 +198,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babel-transpiler
   bootstrap (~> 4.0.0.alpha3)
-  browserify-rails
   byebug
   capistrano (~> 3.5)
   capistrano-passenger (~> 0.2.0)
