@@ -9,17 +9,15 @@ function WebdocPlayer() {
         playing: false,
         interval: {},
         current_episode: {},
-        stopButtons:  function stop() {
-          clearInterval(this.interval);
-        },
-        activateButtons:  function start(start_time) { 
+        stopButtons: () => { clearInterval(this.interval); },
+        activateButtons: (start_time) => { 
             let time = start_time;
             this.interval = setInterval(function() { 
               drawButtons(time);
-              time ++;
-              },1000);
+              time += 0.5;
+              }, 500);
         }
-    }
+}
 
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
@@ -95,54 +93,103 @@ function WebdocPlayer() {
 
 
 
-
-    // TODO join map_posts + video_posts
+    // Iterate over map_posts & video_posts
+    // Draw and remove on exact time
     function drawButtons(current_time) {
-        let posts = [];
-        player.current_episode.posts.forEach((post) => {
+        var time = current_time
+
+        player.current_episode.video_posts.forEach( (post) => {
             const fade_in = post.fade_in;
             const fade_out = post.fade_out;
+            const iButton_id = `iButtonVideo${post.id}`
 
-            if (current_time >= fade_in &&
-                current_time <= fade_out) {
-                insertContentBtn(post)
-                console.log(fade_in);
+            if (current_time >= fade_in  &&
+                current_time <= fade_out  &&
+               !document.getElementById(iButton_id)) {
+                    insertContentBtn(post);
             }
 
-            if (current_time < fade_in &&
+            if (current_time < fade_in ||
                 current_time > fade_out) {
-                console.log(fade_in);
+                $(`#${iButton_id}`).remove();
+            };
+        });
+        
+        player.current_episode.map_posts.forEach( (post) => {
+            const fade_in = post.fade_in;
+            const fade_out = post.fade_out;
+            const iButton_id = `iButtonMap${post.id}`
+
+            if (current_time >= fade_in  &&
+                current_time <= fade_out && 
+               !document.getElementById(iButton_id)) {
+                    insertMapBtn(post);
             }
 
-
+            if (current_time < fade_in ||
+                current_time > fade_out) {
+                $(`#${iButton_id}`).remove();
+            };
         });
     }
 
 
-    insertContentBtn = function (btn) {
+    function insertContentBtn(btn) {
       let content_btn = $(`<a>${btn.title}</a>`)
         .addClass('content-btn')
         .css({ 
+            'top':  `${btn.cooY}%`, 
             'left': `${btn.cooX}%`, 
-            'top':`${btn.cooY}%`, 
         })
         .attr({ 
-            'id': `btn_id_${btn.timestamp}`,
-            // 'data-toggle': 'modal',
-            // 'data-target': '#playerModal'
+            'id': `iButtonVideo${btn.id}`,
+            'data-toggle': 'modal',
+            'data-target': '#playerModal'
         })
         .appendTo('#player-container').fadeIn(300)
-      content = btn.content
-      title = btn.title
       
-      content_btn.on('click', function () {
-        player.pauseVideo();
+      content_btn.on('click', () => {
+        player.youtube.pauseVideo();
         $('#modalTitle').html(btn.title);
         $('#modalBody').html(btn.content);
         });
     };
 
 
+    function insertMapBtn(btn) {
+        console.log(btn);
+        let map_btn =
+            $(`<a><span class="glyphicon glyphicon-globe"></span>${btn.title}</a>`)
+            .addClass('content-btn')
+            .css({ 
+                'top':  `${btn.cooY}%`, 
+                'left': `${btn.cooX}%`, 
+            })
+            .attr({ 
+                'id': `iButtonMap${btn.id}`,
+                'href': '#mapInfoDisplay',
+                'data-title': btn.title,
+            })
+            .appendTo('#player-container').fadeIn(300)
+            .on('click', () => {
+                updateMapMenu(btn);
+                player.youtube.pauseVideo();
+            });
+    }
+
+    function updateMapMenu(post) {
+        $('#markTitle').text(post.title);
+        $('#markContent').html(post.content);
+        console.log(post.content)
+        $('.js-watch')
+            .attr({
+              "data-fade-in":   post.fade_in,
+              "data-video-id":  post.id,
+              "data-video-url": post.url
+            }); 
+
+        $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
+    };
 
 
 

@@ -13,6 +13,7 @@ json.posts @video.video_posts do |post|
 	
 json.map_posts @video.map_posts do |post|
 	json.title 		post.title
+	json.content	post.content
 	json.cooX 		post.cooX
 	json.cooY 		post.cooY
 	json.fade_in 	post.fade_in
