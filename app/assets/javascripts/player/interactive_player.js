@@ -99,12 +99,13 @@ function WebdocPlayer() {
     // TODO join map_posts + video_posts
     function drawButtons(current_time) {
         let posts = [];
-        player.current_episode.posts.forEach(function(post) {
+        player.current_episode.posts.forEach((post) => {
             const fade_in = post.fade_in;
             const fade_out = post.fade_out;
-            
+
             if (current_time >= fade_in &&
                 current_time <= fade_out) {
+                insertContentBtn(post)
                 console.log(fade_in);
             }
 
@@ -118,6 +119,28 @@ function WebdocPlayer() {
     }
 
 
+    insertContentBtn = function (btn) {
+      let content_btn = $(`<a>${btn.title}</a>`)
+        .addClass('content-btn')
+        .css({ 
+            'left': `${btn.cooX}%`, 
+            'top':`${btn.cooY}%`, 
+        })
+        .attr({ 
+            'id': `btn_id_${btn.timestamp}`,
+            // 'data-toggle': 'modal',
+            // 'data-target': '#playerModal'
+        })
+        .appendTo('#player-container').fadeIn(300)
+      content = btn.content
+      title = btn.title
+      
+      content_btn.on('click', function () {
+        player.pauseVideo();
+        $('#modalTitle').html(btn.title);
+        $('#modalBody').html(btn.content);
+        });
+    };
 
 
 
