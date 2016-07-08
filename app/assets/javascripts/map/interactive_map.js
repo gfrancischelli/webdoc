@@ -1,25 +1,24 @@
 function WebdocMap() {
 
 	// Sao Paulo
-	var map_coordinates = { lat: -22.373416, lng: -48.412382 };
+	const map_coordinates = { lat: -22.373416, lng: -48.412382 };
+	let map;
 
 	// JSON array with ( rb ).MapPost.all.json
 	// After marksGen() every post inside map_posts
 	// has a mark (google maps mark)
-	var map_posts;
+	let map_posts;
 
 	// Episodes_url = Video.all.json
 	// Call mapGen() then marksGen()
 	function init() {
 		fetch('/map_posts.json')
-			.then(function(response) { 
-				return response.json();
-			})
-			.then(function(marks_json) {
-				map_posts = marks_json;
-			    mapGen();
-				marksGen();
-			});
+		.then(function(response) { return response.json(); })
+		.then(function(map_posts_json) {
+			map_posts = map_posts_json;
+		    mapGen();
+			marksGen();
+		});
 	}
 
 
@@ -30,12 +29,11 @@ function WebdocMap() {
 		  zoom: 7,
 		  center: map_coordinates,
 		  mapTypeId: google.maps.MapTypeId.HYBRID,
-		  scrollwheel: false
+		  scrollwheel: false,
 		});
 
 		google.maps.event.addDomListener(window, "resize", function() {
-		  var center;
-		  center = map.getCenter();
+		  let center = map.getCenter();
 		  google.maps.event.trigger(map, "resize");
 		  map.setCenter(center);
 		});
@@ -46,11 +44,11 @@ function WebdocMap() {
 	//  create and store a new Google Maps Marker
 	function marksGen() { 
 		map_posts.forEach(function(point) {
-			var this_point = point;
+			const this_point = point;
 			this_point.mark = new google.maps.Marker({
 			  position: point.coordinates,
 			  title: point.title,
-			  map: map
+			  map: map,
 			});
 
 			this_point.mark.addListener('click', function() {
