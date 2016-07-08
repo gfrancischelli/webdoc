@@ -65,7 +65,7 @@ function WebdocMap() {
 			.attr({
 			  "data-fade-in":   post.fade_in,
 			  "data-video-id":  post.id,
-			  "data-video-url": post.url
+			  "data-video-url": post.url,
 			}); 
 
 		$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
@@ -74,8 +74,8 @@ function WebdocMap() {
 
 
 	var publicApi = {
+		posts: map_posts,
 		init:  init(),
-		posts: map_posts
 	};
 
 	return { publicApi }

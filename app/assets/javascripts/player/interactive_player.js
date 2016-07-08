@@ -26,7 +26,6 @@ function WebdocPlayer() {
             .then(function(response) { return response.json() })
             .then(function(episode) {
                 player.current_episode = episode;
-                console.log(player.current_episode.url);
                 youtubeGen(player.current_episode.url);
             });
     };
@@ -96,12 +95,12 @@ function WebdocPlayer() {
     // Iterate over map_posts & video_posts
     // Draw and remove on exact time
     function drawButtons(current_time) {
-        var time = current_time
+        let time = current_time
 
         player.current_episode.video_posts.forEach( (post) => {
             const fade_in = post.fade_in;
             const fade_out = post.fade_out;
-            const iButton_id = `iButtonVideo${post.id}`
+            const iButton_id = `iButtonVideo${post.id}`;
 
             if (current_time >= fade_in  &&
                 current_time <= fade_out  &&
@@ -118,7 +117,7 @@ function WebdocPlayer() {
         player.current_episode.map_posts.forEach( (post) => {
             const fade_in = post.fade_in;
             const fade_out = post.fade_out;
-            const iButton_id = `iButtonMap${post.id}`
+            const iButton_id = `iButtonMap${post.id}`;
 
             if (current_time >= fade_in  &&
                 current_time <= fade_out && 
@@ -144,7 +143,7 @@ function WebdocPlayer() {
         .attr({ 
             'id': `iButtonVideo${btn.id}`,
             'data-toggle': 'modal',
-            'data-target': '#playerModal'
+            'data-target': '#playerModal',
         })
         .appendTo('#player-container').fadeIn(300)
       
@@ -162,8 +161,8 @@ function WebdocPlayer() {
             $(`<a><span class="glyphicon glyphicon-globe"></span>${btn.title}</a>`)
             .addClass('content-btn')
             .css({ 
-                'top':  `${btn.cooY}%`, 
-                'left': `${btn.cooX}%`, 
+                'top':  `${btn.cooY}%`,
+                'left': `${btn.cooX}%`,
             })
             .attr({ 
                 'id': `iButtonMap${btn.id}`,
@@ -180,12 +179,11 @@ function WebdocPlayer() {
     function updateMapMenu(post) {
         $('#markTitle').text(post.title);
         $('#markContent').html(post.content);
-        console.log(post.content)
         $('.js-watch')
             .attr({
               "data-fade-in":   post.fade_in,
               "data-video-id":  post.id,
-              "data-video-url": post.url
+              "data-video-url": post.url,
             }); 
 
         $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
