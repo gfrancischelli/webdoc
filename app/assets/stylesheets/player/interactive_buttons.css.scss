@@ -1,0 +1,31 @@
+.btn-player {
+  position: relative;
+  top: 60%;
+  z-index: 998;
+}
+
+.content-btn {
+  padding: 0.7rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(1, 1, 1, 0.8);
+  font-weight: bold;
+  font-size: 1.6rem;
+  position: absolute;
+  z-index: 999;
+  text-decoration: none;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+	}
+}
+.content-btn:hover {
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  text-shadow: -1px -1px 0 darken(black, 9.5%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(1, 1, 1, 0.6);
+  transition: all 250ms linear;
+ }
+
+.content-btn:active {
+  background-color: rgba(1, 1, 1, 0.4);
+  color: rgba(1, 1, 1, 0.3);
+}
