@@ -24,7 +24,7 @@ function WebdocPlayer() {
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
     function init() {
-        fetch("/videos/" + video_id + ".json")
+        fetch(`/videos/${video_id}.json`)
             .then(function(response) { 
                 return response.json()
             })
@@ -61,6 +61,7 @@ function WebdocPlayer() {
     };
 
     // Handles button drawing functions
+    // When video is playing / is not
     function onPlayerStateChange(event) {
         if (event.data == 1) {
             if (!player.playing) {
