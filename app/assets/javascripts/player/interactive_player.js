@@ -63,7 +63,7 @@ function WebdocPlayer() {
                 $("#main-navbar").fadeToggle();
                 player.playing = true;
                 
-                const current_time = player.youtube.getCurrentTime();
+                const current_time = Math.floor(player.youtube.getCurrentTime()) + 1;
                 player.activateButtons(current_time);
             }
         }

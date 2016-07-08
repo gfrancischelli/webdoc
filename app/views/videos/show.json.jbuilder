@@ -2,7 +2,7 @@ json.id		@video.id
 json.title	@video.title
 json.url	@video.url
 
-json.posts @video.video_posts do |post|
+json.video_posts @video.video_posts do |post|
 	json.title 		post.title
 	json.content 	post.content
 	json.cooX 		post.cooX
