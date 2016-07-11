@@ -25,6 +25,7 @@ function WebdocPlayer() {
         fetch(`/videos/${video_id}.json`)
             .then(function(response) { return response.json() })
             .then(function(episode) {
+                console.log(episode)
                 player.current_episode = episode;
                 youtubeGen(player.current_episode.url);
             });
@@ -134,7 +135,8 @@ function WebdocPlayer() {
 
 
     function insertContentBtn(btn) {
-      let content_btn = $(`<a>${btn.title}</a>`)
+      let content_btn = 
+        $(`<a>${btn.title}</a>`)
         .addClass('content-btn')
         .css({ 
             'top':  `${btn.cooY}%`, 
@@ -147,6 +149,7 @@ function WebdocPlayer() {
         })
         .appendTo('#player-container').fadeIn(300)
       
+      console.log(content_btn);
       content_btn.on('click', () => {
         player.youtube.pauseVideo();
         $('#modalTitle').html(btn.title);
@@ -156,9 +159,8 @@ function WebdocPlayer() {
 
 
     function insertMapBtn(btn) {
-        console.log(btn);
         let map_btn =
-            $(`<a><span class="glyphicon glyphicon-globe"></span>${btn.title}</a>`)
+            $(`<a><span class="fa fa-globe"></span></a>`)
             .addClass('content-btn')
             .css({ 
                 'top':  `${btn.cooY}%`,
@@ -198,8 +200,6 @@ function WebdocPlayer() {
 
     return  { publicAPI };
 };
-
-
 
 
 function onYouTubeIframeAPIReady() {
