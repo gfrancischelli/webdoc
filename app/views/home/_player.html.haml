@@ -19,5 +19,8 @@
         %button#howto.btn.btn-info{style: "position:absolute; right: 2rem; bottom: 1.5rem",
         "data-dismiss" => "modal", "aria-label" => "Close"}
           Ok
+%button.user-post-btn.js-new-post-btn
+  %span.fa.fa-pencil
 #player-container.embed-responsive.embed-responsive-16by9.js-set-player-id{ data: {video_id: @videos.last.id} }
+  = render 'layouts/new_post_form'
   #youtube

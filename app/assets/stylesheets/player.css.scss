@@ -24,6 +24,12 @@
     font-size: 5rem;
     color: #fff;
    }
+
+  #new-post-form {
+    position: absolute;
+    margin: 0 auto;
+    background-color: #FFFFFF;  
+  }
 }
 
 #youtube {
@@ -32,3 +38,15 @@
   max-width: 100vw;
 }
  
+.new-post-form {
+  display: none;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 1.5rem 2rem;
+  z-index: 999;
+  width: 600px;
+  border-radius: 1rem;
+  background-color: #EFEFEF;
+  box-shadow: 0px 0px 10px 2px rgba(2, 2, 2, 0.55);
+}
