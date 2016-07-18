@@ -62,6 +62,7 @@ function WebdocPlayer() {
         if (event.data == 1) {
             if (!player.playing) {
                 $("#main-navbar").fadeToggle();
+                $(".js-new-post-btn").fadeToggle();
                 player.playing = true;
                 
                 const current_time = Math.floor(player.youtube.getCurrentTime()) + 1;
@@ -71,6 +72,7 @@ function WebdocPlayer() {
 
         if (event.data == 2) {
             $("#main-navbar").fadeToggle();
+            $(".js-new-post-btn").fadeToggle();
             player.playing = false;
             player.stopButtons();
         }

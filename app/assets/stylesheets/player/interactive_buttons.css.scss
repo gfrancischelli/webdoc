@@ -34,3 +34,28 @@
   background-color: rgba(1, 1, 1, 0.4);
   color: rgba(1, 1, 1, 0.3);
 }
+
+.user-post-btn {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  right: 5rem;
+  bottom: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  background-color: #536DFE;
+  border-radius: 2.5rem;
+  box-shadow: 0px 3px 0px #141466;
+  font-size: 3rem;
+  color: #FFFFFF;
+
+  .fa {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &:active{
+    bottom: calc(4rem - 3px);
+    box-shadow: none;
+  }
+}
