@@ -5,6 +5,7 @@ function WebdocPlayer() {
     let video_id = 1;
 
     const player = { 
+        video_id: video_id,
         youtube: {},
         playing: false,
         interval: {},
@@ -16,18 +17,19 @@ function WebdocPlayer() {
               drawButtons(time);
               time += 0.5;
               }, 500);
-        }
-}
+        },
+    }
 
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
     function init() {
-        fetch(`/videos/${video_id}.json`)
+        fetch(`/videos/${player.video_id}.json`)
             .then(function(response) { return response.json() })
             .then(function(episode) {
                 console.log(episode)
                 player.current_episode = episode;
                 youtubeGen(player.current_episode.url);
+                init_new_post(player);
             });
     };
 
@@ -61,18 +63,28 @@ function WebdocPlayer() {
     function onPlayerStateChange(event) {
         if (event.data == 1) {
             if (!player.playing) {
+                const current_time = Math.floor(player.youtube.getCurrentTime()) + 1;
+
+                // Hide every player overlay
                 $("#main-navbar").fadeToggle();
                 $(".js-new-post-btn").fadeToggle();
+                $('.new-post-form').fadeOut();
+
                 player.playing = true;
                 
-                const current_time = Math.floor(player.youtube.getCurrentTime()) + 1;
                 player.activateButtons(current_time);
             }
         }
 
         if (event.data == 2) {
+
+            console.log(`player.video_id: ${player.video_id}`);
+            $("#videoIdInput").attr('value', player.video_id);
+            $("#fadeInInput").attr('value', player.youtube.getCurrentTime());
+
             $("#main-navbar").fadeToggle();
             $(".js-new-post-btn").fadeToggle();
+
             player.playing = false;
             player.stopButtons();
         }
@@ -83,6 +95,8 @@ function WebdocPlayer() {
     function changeVideo(video_id, video_url, fade_in) {
         const video_post_url = `/videos/${video_id}/video_posts.json`;
         const   map_post_url = `/videos/${video_id}/map_posts.json`;
+
+        player.video_id = video_id;
 
         fetch(video_post_url)
             .then(function(response) { return response.json(); })
@@ -158,7 +172,6 @@ function WebdocPlayer() {
         $('#modalBody').html(btn.content);
         });
     };
-
 
     function insertMapBtn(btn) {
         let map_btn =
