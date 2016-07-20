@@ -1,13 +1,14 @@
-function WebdocPlayer() {
+var Player = (function WebdocPlayer() {
 
     // DONT FORGET TO USE THIS ONE
     // var video_id = $('#player-container').data('video-id');
-    let video_id = 1;
+    // let video_id = 1;
+    var is_playing = false;
+    var current_episode = {};
 
-    const player = { 
-        video_id: video_id,
+    var player = { 
+        video_id: 1,
         youtube: {},
-        playing: false,
         interval: {},
         current_episode: {},
         stopButtons: () => { clearInterval(this.interval); },
@@ -20,15 +21,17 @@ function WebdocPlayer() {
         },
     }
 
+
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
     function init() {
+        console.log('Call init, player')
         fetch(`/videos/${player.video_id}.json`)
             .then(function(response) { return response.json() })
             .then(function(episode) {
-                console.log(episode)
-                player.current_episode = episode;
-                youtubeGen(player.current_episode.url);
+                current_episode = episode;
+                console.log(current_episode)
+                youtubeGen(current_episode.url);
                 init_new_post(player);
             });
     };
@@ -62,15 +65,19 @@ function WebdocPlayer() {
     // When video is playing / is not
     function onPlayerStateChange(event) {
         if (event.data == 1) {
-            if (!player.playing) {
+            if (!is_playing) {
                 const current_time = Math.floor(player.youtube.getCurrentTime()) + 1;
-
                 // Hide every player overlay
                 $("#main-navbar").fadeToggle();
                 $(".js-new-post-btn").fadeToggle();
                 $('.new-post-form').fadeOut();
 
-                player.playing = true;
+                if (newPostReceived()) {
+                    console.log('received')
+                    addNewPost();
+                }
+
+                is_playing = true;
                 
                 player.activateButtons(current_time);
             }
@@ -85,12 +92,12 @@ function WebdocPlayer() {
             $("#main-navbar").fadeToggle();
             $(".js-new-post-btn").fadeToggle();
 
-            player.playing = false;
+            is_playing = false;
             player.stopButtons();
         }
     };
 
-    // Fetches new video into player.current_episode
+    // Fetches new video into current_episode
     // Load new player.youtube
     function changeVideo(video_id, video_url, fade_in) {
         const video_post_url = `/videos/${video_id}/video_posts.json`;
@@ -102,7 +109,7 @@ function WebdocPlayer() {
             .then(function(response) { return response.json(); })
             .then(function(posts_json) {
                 player.youtube.loadVideoById(video_url);
-                player.current_episode.video_posts = posts_json;
+                current_episode.video_posts = posts_json;
             })
     };
 
@@ -114,7 +121,7 @@ function WebdocPlayer() {
     function drawButtons(current_time) {
         let time = current_time
 
-        player.current_episode.video_posts.forEach( (post) => {
+        current_episode.video_posts.forEach( (post) => {
             const fade_in = post.fade_in;
             const fade_out = post.fade_out;
             const iButton_id = `iButtonVideo${post.id}`;
@@ -131,7 +138,7 @@ function WebdocPlayer() {
             };
         });
         
-        player.current_episode.map_posts.forEach( (post) => {
+        current_episode.map_posts.forEach( (post) => {
             const fade_in = post.fade_in;
             const fade_out = post.fade_out;
             const iButton_id = `iButtonMap${post.id}`;
