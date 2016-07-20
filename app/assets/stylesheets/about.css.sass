@@ -1,0 +1,48 @@
+@import 'utility'
+@import 'colors'
+@import 'https://fonts.googleapis.com/css?family=PT+Sans'
+
+#sobre-container 
+  @extend .-default-padding
+  font-family: 'PT Sans', sans-serif
+  color: #fff
+  width: 60%
+  margin: 0 auto
+    
+  #sobre-text
+    padding-top: 1rem
+    
+  #hide 
+    opacity: 0
+  
+  a 
+    color: white
+    text-decoration: underline
+    
+  a:hover
+    cursor: pointer
+  
+  img 
+    display: block
+    margin: 0 auto
+    padding: 1rem
+  
+
+
+#patrocinio
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  max-width: 100%
+  padding: 0
+  text-align: center
+  img
+    width: 9rem
+  .item
+    text-align: center
+  
+@media screen and (max-width: 400px)
+  .flex-item
+    width: 80%
+
+  
