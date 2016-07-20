@@ -172,7 +172,6 @@ var Player = (function WebdocPlayer() {
         })
         .appendTo('#player-container').fadeIn(300)
       
-      console.log(content_btn);
       content_btn.on('click', () => {
         player.youtube.pauseVideo();
         $('#modalTitle').html(btn.title);
@@ -213,19 +212,54 @@ var Player = (function WebdocPlayer() {
         $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
     };
 
+    var alerta = 'alerta'
+
+
+    function addNewPost() {
+        var $infos = $('#newPostReceiver');
+        var id = $infos.attr('data-id');
+        var title = $infos.data('title');
+        var cooX = $infos.data('coox');
+        var cooY = $infos.data('cooy');
+        var content = $infos.data('content');
+        var fade_in = $infos.data('fade_in');
+        var fade_out = $infos.data('fade_out');
+
+        var new_post = {
+            id:       id,
+            title:    title,
+            cooX:     cooX,
+            cooY:     cooY,
+            content:  content,
+            fade_in:  fade_in,
+            fade_out: fade_out,
+        };
+
+        insertContentBtn(new_post);
+
+        current_episode.video_posts.push(new_post);
+
+    }
+
+    function newPostReceived() {
+        let data_id = $('#newPostReceiver').attr('data-id');
+        let data_title = $('#newPostReceiver').data('title');
+        if (data_id != 0) { return true }
+        else { return false }
+    }
 
 
     var publicAPI = {
+        current_episode: current_episode,
         init: init(), 
-        changeVideo: changeVideo(),
     };
 
     return  { publicAPI };
-};
-
+})();
 
 function onYouTubeIframeAPIReady() {
     console.log('onYoutubeAPIReady');
-    WebdocPlayer().init();
+    Player.init();
+    Player.appendPost({heya: 'hoy'})
 };
 

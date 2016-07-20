@@ -21,6 +21,7 @@
           Ok
 %button.user-post-btn.js-new-post-btn
   %span.fa.fa-pencil
+%output#newPostReceiver{name: 'new_post_response', 'data-id' => '0'}
 #player-container.embed-responsive.embed-responsive-16by9.js-set-player-id{ data: {video_id: @videos.last.id} }
   = render 'layouts/new_post_form'
   #youtube

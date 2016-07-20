@@ -19,8 +19,8 @@ class VideoPostsController < ApplicationController
 		@video_post.cooX = 70
 		@video_post.cooY = 20
 		@video_post.save
-		
-		render json: @video_post
+
+		@post = @video_post
 	end
 
 	private

@@ -1,0 +1,13 @@
+(() => { 
+	console.log('webdocplayer');
+	$('#newPostReceiver').attr({
+		'data-id': 	 	 '<%= @post.id 	     %>',
+		'data-cooX': 	 '<%= @post.cooX 	 %>',
+		'data-cooY': 	 '<%= @post.cooY 	 %>',
+		'data-title': 	 '<%= @post.title 	 %>',
+		'data-content':  '<%= @post.content  %>',
+		'data-fade_in':  '<%= @post.fade_in  %>',
+		'data-fade_out': '<%= @post.fade_out %>',
+	})
+	console.log('webdocplayer success');
+})();

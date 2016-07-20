@@ -1,4 +1,4 @@
-= simple_form_for VideoPost.new, url: '/videos/1/video_posts', html: { class: 'new-post-form' } do |f|
+= simple_form_for VideoPost.new, url: '/videos/1/video_posts', html: { class: 'new-post-form' }, remote: true do |f|
 	%fieldset.form-group
 		= f.label :Título
 		= f.input_field :title, class: 'form-control'
@@ -11,7 +11,7 @@
 		= f.input :video_id, type: 'hidden', input_html: { value: Video.last.id, class: 'hidden', id: 'videoIdInput' }
 		= f.input :fade_in,  input_html: { value: '0', class: 'hidden', id: 'fadeInInput' }
 
-	= f.button :submit, class: 'btn btn-primary', value: 'Enviar'
+	= f.button :submit, class: 'btn btn-primary', value: 'Enviar', id: 'submitNewPost'
 
 -# %h1= @video_post.content
 -# %h1 certo?
