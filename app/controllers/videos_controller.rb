@@ -12,6 +12,8 @@ class VideosController < ApplicationController
 
 	def new
 		@video = Video.new()
+		@map_post = MapPost.new()
+		@video_post = VideoPost.new()
 	end
 
 	def create

@@ -23,6 +23,10 @@ class VideoPostsController < ApplicationController
 		@post = @video_post
 	end
 
+	def create_alt
+		@video_post = VideoPost.create(video_post_params)
+	end
+
 	private
 
 	def set_video
@@ -30,7 +34,7 @@ class VideoPostsController < ApplicationController
 	end
 
 	def video_post_params
-	  params.require(:video_post).permit(:title, :content, :fade_in, :fade_out, :video_id, :user_id)
+	  params.require(:video_post).permit(:title, :content, :fade_in, :fade_out, :video_id, :user_id, :cooX, :cooY)
 	end
 
 end

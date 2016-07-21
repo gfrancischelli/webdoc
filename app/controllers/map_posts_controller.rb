@@ -9,10 +9,17 @@ class MapPostsController < ApplicationController
 		@map_posts = MapPost.all
 	end
 
+	def create
+		@map_post = MapPost.create(map_params)
+	end
+
 	private
 
 	def set_video
 		@video = Video.all.find(params[:video_id])
 	end
 
+	def map_params
+		params.require(:map_post).permit(:title, :content, :fade_in, :fade_out, :lat, :lng, :video_id)
+	end
 end

@@ -1,0 +1,1 @@
+alert('Post salvo com sucesso');

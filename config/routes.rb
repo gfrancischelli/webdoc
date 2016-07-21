@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   root to: 'home#index', as: '/cozinhacaipira'
   get 'cozinhacaipira', to: 'home#index'
   get 'map_posts', to: 'map_posts#show_all'
+  post 'map_posts', to: 'map_posts#create'
+  post 'video_posts', to: 'video_posts#create_alt'
 
   # get 'map_posts', to: 'videos#map_posts'
   # get 'posts', to: 'videos#posts'
