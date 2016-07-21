@@ -9,3 +9,7 @@ function init_new_post(player) {
     $('.new-post-form').fadeOut();
   })
 }
+
+$(document).ready(function(){
+
+});

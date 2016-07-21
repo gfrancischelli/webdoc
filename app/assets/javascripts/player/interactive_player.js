@@ -1,4 +1,4 @@
-var Player = (function WebdocPlayer() {
+function WebdocPlayer() {
 
     // DONT FORGET TO USE THIS ONE
     // var video_id = $('#player-container').data('video-id');
@@ -24,16 +24,14 @@ var Player = (function WebdocPlayer() {
 
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
-    function init() {
-        console.log('Call init, player')
-        fetch(`/videos/${player.video_id}.json`)
-            .then(function(response) { return response.json() })
-            .then(function(episode) {
-                current_episode = episode;
-                console.log(current_episode)
-                youtubeGen(current_episode.url);
-                init_new_post(player);
-            });
+    function init(new_episode) {
+        console.log('Player.init()')
+        console.log(new_episode)
+
+        youtubeGen(new_episode.url);
+        init_new_post(player);
+        
+        current_episode = new_episode;
     };
 
     // onPlayerReady: Add onClick to .js-watch
@@ -212,9 +210,6 @@ var Player = (function WebdocPlayer() {
         $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
     };
 
-    var alerta = 'alerta'
-
-
     function addNewPost() {
         var $infos = $('#newPostReceiver');
         var id = $infos.attr('data-id');
@@ -238,7 +233,6 @@ var Player = (function WebdocPlayer() {
         insertContentBtn(new_post);
 
         current_episode.video_posts.push(new_post);
-
     }
 
     function newPostReceived() {
@@ -249,17 +243,8 @@ var Player = (function WebdocPlayer() {
     }
 
 
-    var publicAPI = {
-        current_episode: current_episode,
-        init: init(), 
-    };
-
-    return  { publicAPI };
-})();
-
-function onYouTubeIframeAPIReady() {
-    console.log('onYoutubeAPIReady');
-    Player.init();
-    Player.appendPost({heya: 'hoy'})
+    return {
+        init: init
+    }
 };
 
