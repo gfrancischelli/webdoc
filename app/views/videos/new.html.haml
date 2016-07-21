@@ -1,0 +1,13 @@
+%section.new-video
+	%h1 Novo Vídeo
+	%br
+	= simple_form_for @video, remote: true do |f|
+		%fieldset.form-group
+			= f.label :Título
+			= f.input_field :title, class: 'form-control'
+
+		%fieldset.form-group
+			= f.label :Url
+			= f.input_field :url, class: 'form-control'
+
+		= f.button :submit, class: 'btn btn-primary'
