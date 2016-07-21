@@ -20,6 +20,6 @@ class MapPostsController < ApplicationController
 	end
 
 	def map_params
-		params.require(:map_post).permit(:title, :content, :fade_in, :fade_out, :lat, :lng, :video_id)
+		params.require(:map_post).permit(:title, :content, :fade_in, :fade_out, :lat, :lng, :video_id, :cooX, :cooY)
 	end
 end
