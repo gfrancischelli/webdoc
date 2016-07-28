@@ -91,7 +91,8 @@ var teste = (function(){
 
 function onYouTubeIframeAPIReady() {
     console.log('onYouTubeIframeAPIReady()')
-    teste.initPlayer(1);
+    var video_id = $('#player-container').attr('data-video-id')
+    teste.initPlayer(video_id);
 };
 
 function initMap() {
