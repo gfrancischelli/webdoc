@@ -21,11 +21,11 @@
 		%fieldset.form-inline
 			= m.input :cooX
 			= m.input :cooY
-			= m.input :lat
+			= m.input :lat, type: 'number'
 			= m.input :lng
 			= m.input :fade_in
 			= m.input :fade_out
-			= m.input :video_id
+			= m.association :video
 
 		= m.button :submit, class: 'btn btn-primary'
 	
@@ -41,7 +41,7 @@
 			= m.input :cooY
 			= m.input :fade_in
 			= m.input :fade_out
-			= m.input :video_id
+			= m.association :video
 
 		= m.button :submit, class: 'btn btn-primary'
 

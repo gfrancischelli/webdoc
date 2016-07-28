@@ -10,7 +10,13 @@ class MapPostsController < ApplicationController
 	end
 
 	def create
-		@map_post = MapPost.create(map_params)
+		@map_post = MapPost.new(map_params)
+
+		if @map_post.save
+			render js: 'create'
+		else
+			render js: 'failed'
+		end
 	end
 
 	private
