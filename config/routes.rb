@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root to: 'home#index', as: '/cozinhacaipira'
+  root to: 'application#redirect_to_cozinhacaipira'
   get 'cozinhacaipira', to: 'home#index'
   get 'map_posts', to: 'map_posts#show_all'
   post 'map_posts', to: 'map_posts#create'
