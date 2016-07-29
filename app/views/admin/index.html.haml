@@ -1,0 +1,5 @@
+%ul.nav.navbar-nav
+			%li= link_to "Todos Posts", posts_path 
+			- Category.all.each do |category|
+				%li= link_to category.name, posts_path(category: category.name)
+			%li= link_to "eventos" , eventos_path

@@ -1,0 +1,9 @@
+= simple_form_for @video_post, url: video_video_post_path do |m|
+	= m.input :title
+	= m.input :content
+	= m.input :cooX
+	= m.input :cooY
+	= m.input :fade_in
+	= m.input :fade_out
+
+	= m.button :submit, class: 'btn btn-primary'

@@ -1,0 +1,7 @@
+%br
+%br
+%br
+.container	
+	= render 'form'
+	= link_to "Deletar",video_video_post_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger"
+	= link_to "Voltar", videos_path, class: "btn btn-primary"

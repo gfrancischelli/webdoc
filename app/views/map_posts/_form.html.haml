@@ -1,0 +1,11 @@
+= simple_form_for @map_post, url: video_map_post_path do |m|
+	= m.input :title
+	= m.input :content
+	= m.input :cooX
+	= m.input :cooY
+	= m.input :fade_in
+	= m.input :fade_out
+	= m.input :lat, as: :integer
+	= m.input :lng, as: :integer
+
+	= m.button :submit, class: 'btn btn-primary'

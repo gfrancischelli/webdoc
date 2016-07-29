@@ -1,5 +1,5 @@
 class VideoPostsController < ApplicationController
-	before_action :set_video, only: [:index, :show, :new]
+	before_action :set_video, only: [:index, :show, :new, :destroy]
 	protect_from_forgery except: :new
 
 	def index
@@ -7,10 +7,14 @@ class VideoPostsController < ApplicationController
 	end
 
 	def new
-		@video_post = VideoPost.new
+		@video_post = @video.video_posts.new
 	end
 
 	def show
+	end
+
+	def edit
+		@video_post = VideoPost.find(params[:video_id])
 	end
 
 	def create
@@ -25,12 +29,24 @@ class VideoPostsController < ApplicationController
 
 	def create_alt
 		@video_post = VideoPost.create(video_post_params)
+		redirect_to videos_path
+	end
+
+	def destroy
+		@video_post = Video.find(params[:id]).video_posts.find(params[:video_id])
+		@video_post.destroy
+		redirect_to videos_path
+	end
+
+	def update
+		VideoPost.find(params[:video_id]).update(video_post_params)
+		redirect_to videos_path
 	end
 
 	private
 
 	def set_video
-		@video = Video.all.find(params[:video_id])
+		@video = Video.find(params[:video_id])
 	end
 
 	def video_post_params

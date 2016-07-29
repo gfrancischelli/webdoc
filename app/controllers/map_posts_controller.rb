@@ -1,8 +1,12 @@
 class MapPostsController < ApplicationController
-	before_action :set_video, only: [:index, :show]
+	before_action :set_video, only: [:index, :show, :new, :create]
 
 	def index
 		@map_posts = @video.map_posts.all
+	end
+
+	def new
+		@map_post = @video.map_posts.new
 	end
 
 	def show_all
@@ -10,22 +14,26 @@ class MapPostsController < ApplicationController
 	end
 
 	def create
-		@map_post = MapPost.new(map_params)
+		@map_post = @video.map_posts.create(map_params)
+		redirect_to videos_path
+	end
 
-		if @map_post.save
-			render js: 'create'
-		else
-			render js: 'failed'
-		end
+	def edit
+		@map_post = MapPost.find(params[:video_id])
+	end
+
+	def update
+		MapPost.find(params[:video_id]).update(map_params)
+		redirect_to videos_path
 	end
 
 	private
 
 	def set_video
-		@video = Video.all.find(params[:video_id])
+		@video = Video.find(params[:video_id])
 	end
 
 	def map_params
-		params.require(:map_post).permit(:title, :content, :fade_in, :fade_out, :lat, :lng, :video_id, :cooX, :cooY)
+		params.require(:map_post).permit(:title, :content, :fade_in, :fade_out, :video_id, :lat, :lng, :cooX, :cooY)
 	end
 end

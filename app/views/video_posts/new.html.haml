@@ -1,0 +1,15 @@
+%br
+%br
+%br
+.container	
+	= simple_form_for @video_post do |m|
+		= m.input :title
+		= m.input :content
+		= m.input :cooX
+		= m.input :cooY
+		= m.input :fade_in
+		= m.input :fade_out
+		= m.button :submit, class: 'btn btn-primary'
+	%br
+
+	= link_to "Voltar", videos_path, class: "btn btn-primary"

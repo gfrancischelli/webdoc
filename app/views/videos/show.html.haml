@@ -1,0 +1,9 @@
+%br
+.container
+	%h1{style: "display: inline;"}= @video.title
+	.pull-right
+		= link_to "Voltar", videos_path, class: "btn btn-default"
+		= link_to "Editar", edit_video_path(@video), class: "btn btn-default"
+		= link_to "Deletar", video_path(@video), method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger"
+	%br
+	%br

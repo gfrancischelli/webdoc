@@ -1,0 +1,24 @@
+%br
+%br
+%br
+.container
+	- @videos.each do |video| 
+		.video-index
+			%h1{style: "display: inline;"}= video.title
+			.pull-right
+				%button.show-maps-index.btn.btn-secondary Mapa
+				%button.show-posts-index.btn.btn-secondary Posts
+				= link_to "Editar", edit_video_path(video), class: "btn btn-secondary"
+				= link_to "Deletar", video_path(video), method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger"
+			%br
+			%ul.maps-index.list-group
+				-video.map_posts.each do |map|
+					%li.list-group-item
+						= link_to map.title, edit_video_map_post_path(map, id: video.id)
+				= link_to "Novo", new_video_map_post_path(video), class: 'list-group-item list-group-item-action active'
+			%ul.posts-index.list-group
+				-video.video_posts.each do |post|
+					%li.list-group-item
+						= link_to post.title, edit_video_video_post_path(post, id: video.id)
+				= link_to "Novo", new_video_video_post_path(video), class: 'list-group-item list-group-item-action active'
+			%br
