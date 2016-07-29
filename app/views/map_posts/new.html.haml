@@ -4,6 +4,7 @@
 .container	
 	= simple_form_for @map_post, url: video_map_posts_path do |m|
 		= m.input :title
+		= m.file_field :cover
 		= m.input :content
 		= m.input :cooX
 		= m.input :cooY

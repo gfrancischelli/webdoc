@@ -2,7 +2,7 @@
 .card-deck
 	- @videos.each do |video|
 		.card.episode
-			= image_tag 'casa_da_farinha.jpg', class: "card-img-top", width: "380px"
+			= image_tag video.cover.url, class: "card-img-top", width: "380px"
 			.card-block
 				%h4.card-title= video.title
 				%button.btn.btn-primary Assista

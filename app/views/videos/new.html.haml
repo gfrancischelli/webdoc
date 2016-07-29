@@ -1,10 +1,14 @@
-%section.new-video
+.container	
 	%h1 Novo Vídeo
 	%br
-	= simple_form_for @video, remote: true do |f|
+	= simple_form_for @video, remote: true, authenticity_token: true do |f|
 		%fieldset.form-group
 			= f.label :Título
 			= f.input_field :title, class: 'form-control'
+			
+		%fieldset.form-group
+			= f.label :Capa
+			= f.file_field :cover
 
 		%fieldset.form-group
 			= f.label :Url
@@ -12,37 +16,5 @@
 		
 		= f.button :submit, class: 'btn btn-primary'
 	%br
-	%br
-	%h3 Pontos do Mapa
 
-	= simple_form_for @map_post, remote: true do |m|
-		= m.input :title
-		= m.input :content
-		%fieldset.form-inline
-			= m.input :cooX
-			= m.input :cooY
-			= m.input :lat, type: 'number'
-			= m.input :lng
-			= m.input :fade_in
-			= m.input :fade_out
-			= m.association :video
-
-		= m.button :submit, class: 'btn btn-primary'
-	
-	%br
-	%br
-	%h3 Post no Video
-
-	= simple_form_for @video_post, remote: true do |m|
-		= m.input :title
-		= m.input :content
-		%fieldset.form-inline
-			= m.input :cooX
-			= m.input :cooY
-			= m.input :fade_in
-			= m.input :fade_out
-			= m.association :video
-
-		= m.button :submit, class: 'btn btn-primary'
-
-
+	= link_to "Voltar", videos_path, class: "btn btn-primary"
