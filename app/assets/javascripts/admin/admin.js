@@ -1,4 +1,8 @@
-$(document).ready(function() {
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
+
+function ready() {
 	console.log('admin js')
 	$('.show-posts-index').on('click', function() {
 		fadePosts()
@@ -13,4 +17,4 @@ $(document).ready(function() {
 		$('.posts-index').fadeOut();
 		$('.maps-index').fadeOut();
 	}
-})
+}
