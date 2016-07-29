@@ -2,8 +2,8 @@ class VideosController < ApplicationController
 	before_action :set_video, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@videos = Video.all
-		@posts = VideoPost.all
+		@videos = Video.all.order(created_at: :asc)
+		@posts = VideoPost.all.order(created_at: :desc)
 	end
 
 	def show
