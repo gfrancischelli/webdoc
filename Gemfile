@@ -18,6 +18,7 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'devise', '~> 4.1', '>= 4.1.1'
 gem "browserify-rails"
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
+gem 'carrierwave', '~> 0.11.2'
 
 source "https://rails-assets.org" do
   gem "rails-assets-tether"

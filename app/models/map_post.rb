@@ -2,6 +2,8 @@ class MapPost < ActiveRecord::Base
 	belongs_to :video
 	belongs_to :user
 
+	mount_uploader :cover, CoverUploader
+	
 	validates :title, presence: true, length: { maximum: 50 }
 	validates :content, presence: true
 	validates :lat, presence: true, numericality: { only_float: true }

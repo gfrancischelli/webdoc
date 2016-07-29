@@ -24,6 +24,7 @@ class VideosController < ApplicationController
 
 	def update
 		@video.update(video_params)
+		redirect_to videos_path
 	end
 
 	def destroy
@@ -48,6 +49,6 @@ class VideosController < ApplicationController
 		end
 
 		def video_params
-			params.require(:video).permit(:title, :url)
+			params.require(:video).permit(:title, :url, :cover)
 		end
 end
