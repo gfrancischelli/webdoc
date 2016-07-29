@@ -27,6 +27,12 @@ class MapPostsController < ApplicationController
 		redirect_to videos_path
 	end
 
+	def destroy
+		@map_post = Video.find(params[:id]).map_posts.find(params[:video_id])
+		@map_post.destroy
+		redirect_to videos_path
+	end
+
 	private
 
 	def set_video
