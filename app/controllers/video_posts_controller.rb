@@ -18,11 +18,11 @@ class VideoPostsController < ApplicationController
 	end
 
 	def create
-		@video_post = VideoPost.create(video_post_params)
+		@video_post = VideoPost.new(video_post_params)
 		@video_post.fade_out = @video_post.fade_in + 8
 		@video_post.cooX = 70
 		@video_post.cooY = 20
-		@video_post.save
+		@video_post.save!
 
 		@post = @video_post
 	end

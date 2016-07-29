@@ -7,7 +7,7 @@ function WebdocPlayer() {
     var current_episode = {};
 
     var player = { 
-        video_id: 1,
+        video_id: $('#player-container').data('video-id'),
         youtube: {},
         interval: {},
         current_episode: {},
@@ -85,7 +85,7 @@ function WebdocPlayer() {
 
             console.log(`player.video_id: ${player.video_id}`);
             $("#videoIdInput").attr('value', player.video_id);
-            $("#fadeInInput").attr('value', player.youtube.getCurrentTime());
+            $("#fadeInInput").attr('value', Math.floor(player.youtube.getCurrentTime()));
 
             $("#main-navbar").fadeToggle();
             $(".js-new-post-btn").fadeToggle();
@@ -102,6 +102,7 @@ function WebdocPlayer() {
         const   map_post_url = `/videos/${video_id}/map_posts.json`;
 
         player.video_id = video_id;
+        console.log(`video_id: ${video_id}`)
 
         fetch(video_post_url)
             .then(function(response) { return response.json(); })
