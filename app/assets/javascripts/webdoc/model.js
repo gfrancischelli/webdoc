@@ -12,10 +12,6 @@ var database = (function () {
 		        console.log('model done loading');
 		    })
 	}
-	
-	// Singleton
-
-	// Private methods and variables
 
 	function addVideo(new_video) {
 		for (var i = videos.length - 1; i >= 0; i--) {

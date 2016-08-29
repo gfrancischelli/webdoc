@@ -13,18 +13,19 @@ function WebdocPlayerView() {
         current_episode: {},
         stopButtons: () => { 
             clearInterval(this.interval);
-            console.log('stopInterval');
+            // console.log('stopInterval');
              },
         activateButtons: (start_time) => { 
             let time = start_time;
             this.interval = setInterval(function() { 
-              console.log(time);
+              // console.log(time);
               drawButtons(time);
               time += 0.5;
               }, 500);
         },
     }
 
+    var remove_video_btns = () => { $('#player-container > a').remove() };
 
     // episode = ~rb~Video.find(video_id)
     // video_id = closure #player-container
@@ -39,7 +40,7 @@ function WebdocPlayerView() {
 
         $('.episode a').on('click', function() {
             console.log('changeVideo() pls');
-            $('#player-container > a').remove();
+            remove_video_btns()
             var id = $(this).attr('data-video-id');
             var video_url = $(this).attr('data-video-url');
 
@@ -72,7 +73,7 @@ function WebdocPlayerView() {
             let fade_in   = button.data('fadeIn');
             let video_id  = button.data('videoId');
 
-            // changeVideo(video_id, video_url, fade_in);
+            remove_video_btns();
             changeVideo(video_id, fade_in);
         });
     };
@@ -112,7 +113,6 @@ function WebdocPlayerView() {
         }
     };
 
-    // Fetches new video into current_episode
     // Load new player.youtube
     function changeVideo(video_id) {
         current_video = database.find(video_id);
@@ -122,7 +122,7 @@ function WebdocPlayerView() {
 
 
     // Iterate over map_posts & video_posts
-    // Draw and remove on exact time
+    // Draw and remove at exact time
     function drawButtons(current_time) {
         let time = current_time
 
@@ -189,7 +189,7 @@ function WebdocPlayerView() {
     function insertMapBtn(post) {
         let map_btn =
             $(`<a><span class="fa fa-globe"></span></a>`)
-            .addClass('content-btn')
+            .addClass('content-btn js-smooth-scroll')
             .css({ 
                 'top':  `${post.cooY}%`,
                 'left': `${post.cooX}%`,
@@ -201,10 +201,10 @@ function WebdocPlayerView() {
             })
             .appendTo('#player-container').fadeIn(300)
             
-        map_btn.on('click', () => {
+        map_btn.on('click', function(e) {
                 player.youtube.pauseVideo();
                 updateMapMenu(post);
-                console.log('update?')
+                e.stopPropagation();
             });
     }
 
