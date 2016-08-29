@@ -11,10 +11,14 @@ function WebdocPlayerView() {
         youtube: {},
         interval: {},
         current_episode: {},
-        stopButtons: () => { clearInterval(this.interval); },
+        stopButtons: () => { 
+            clearInterval(this.interval);
+            console.log('stopInterval');
+             },
         activateButtons: (start_time) => { 
             let time = start_time;
             this.interval = setInterval(function() { 
+              console.log(time);
               drawButtons(time);
               time += 0.5;
               }, 500);
@@ -35,6 +39,7 @@ function WebdocPlayerView() {
 
         $('.episode a').on('click', function() {
             console.log('changeVideo() pls');
+            $('#player-container > a').remove();
             var id = $(this).attr('data-video-id');
             var video_url = $(this).attr('data-video-url');
 
@@ -96,10 +101,9 @@ function WebdocPlayerView() {
 
         if (event.data == 2) {
 
-            console.log(`player.video_id: ${player.video_id}`);
-            $("#videoIdInput").attr('value', player.video_id);
+            console.log(`current_episode.id: ${current_episode.id}`);
+            $("#videoIdInput").attr('value', current_episode.id);
             $("#fadeInInput").attr('value', Math.floor(player.youtube.getCurrentTime()));
-
             $("#main-navbar").fadeToggle();
             $(".js-new-post-btn").fadeToggle();
 
@@ -113,7 +117,7 @@ function WebdocPlayerView() {
     function changeVideo(video_id) {
         current_video = database.find(video_id);
         database.setCurrentVideo(current_video);
-        player.youtube.loadVideoById(url);
+        player.youtube.loadVideoById(current_video.url);
     };
 
 
@@ -147,6 +151,8 @@ function WebdocPlayerView() {
             if (current_time >= fade_in  &&
                 current_time <= fade_out && 
                !document.getElementById(iButton_id)) {
+                    console.log(`insertMapBtn`);
+                    console.log(post);
                     insertMapBtn(post);
             }
 
@@ -180,37 +186,40 @@ function WebdocPlayerView() {
         });
     };
 
-    function insertMapBtn(btn) {
+    function insertMapBtn(post) {
         let map_btn =
             $(`<a><span class="fa fa-globe"></span></a>`)
             .addClass('content-btn')
             .css({ 
-                'top':  `${btn.cooY}%`,
-                'left': `${btn.cooX}%`,
+                'top':  `${post.cooY}%`,
+                'left': `${post.cooX}%`,
             })
             .attr({ 
-                'id': `iButtonMap${btn.id}`,
+                'id': `iButtonMap${post.id}`,
                 'href': '#mapInfoDisplay',
-                'data-title': btn.title,
+                'data-title': post.title,
             })
             .appendTo('#player-container').fadeIn(300)
-            .on('click', () => {
-                updateMapMenu(btn);
+            
+        map_btn.on('click', () => {
                 player.youtube.pauseVideo();
+                updateMapMenu(post);
+                console.log('update?')
             });
     }
 
     function updateMapMenu(post) {
         $('#markTitle').text(post.title);
         $('#markContent').html(post.content);
+        // $('#markCover').attr('src', post.cover);
         $('.js-watch')
             .attr({
               "data-fade-in":   post.fade_in,
               "data-video-id":  post.id,
               "data-video-url": post.url,
             }); 
-
         $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
+        console.log('finish updatemapmenu')
     };
 
     function addNewPost() {

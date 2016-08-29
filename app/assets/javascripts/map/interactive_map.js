@@ -35,7 +35,7 @@ function WebdocMapView() {
     function updateMapMenu(post) {
     	$('#markTitle').text(post.title);
         $('#markContent').html(post.content);
-    	$('#markCover').attr('src', post.cover);
+    	// $('#markCover').attr('src', post.cover);
     	$('.js-watch')
     		.attr({
     		  "data-fade-in":   post.fade_in,
