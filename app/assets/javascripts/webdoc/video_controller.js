@@ -22,20 +22,20 @@ var PlayerController = (function() {
             });
     };
 
-    function changeVideo(video_id, video_url, fade_in) {
-        const video_post_url = `/videos/${video_id}/video_posts.json`;
-        const   map_post_url = `/videos/${video_id}/map_posts.json`;
+    // function changeVideo(video_id, video_url, fade_in) {
+    //     const video_post_url = `/videos/${video_id}/video_posts.json`;
+    //     const   map_post_url = `/videos/${video_id}/map_posts.json`;
 
-        player.video_id = video_id;
-        console.log(`video_id: ${video_id}`)
+    //     player.video_id = video_id;
+    //     console.log(`video_id: ${video_id}`)
 
-        fetch(video_post_url)
-            .then(function(response) { return response.json(); })
-            .then(function(posts_json) {
-                player.youtube.loadVideoById(video_url);
-                current_episode.video_posts = posts_json;
-            })
-    };
+    //     fetch(video_post_url)
+    //         .then(function(response) { return response.json(); })
+    //         .then(function(posts_json) {
+    //             player.youtube.loadVideoById(video_url);
+    //             current_episode.video_posts = posts_json;
+    //         })
+    // };
 
     function alert() {
         console.log('alert player controller')

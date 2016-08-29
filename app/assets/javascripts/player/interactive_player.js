@@ -33,13 +33,17 @@ function WebdocPlayerView() {
         
         current_episode = new_episode;
 
-        $('.episode button').on('click', () => {
+        $('.episode a').on('click', function() {
             console.log('changeVideo() pls');
             var id = $(this).attr('data-video-id');
-            var url = $(this).attr('data-video-url');
-            current_video = database.find(id);
-            database.setCurrentVideo(current_video);
-            player.youtube.loadVideoById(url);
+            var video_url = $(this).attr('data-video-url');
+
+            console.log(`changeVideo(${id})`);
+            console.log(`database.find(${id}): ${database.find(id).title}`)
+            current_episode = database.setCurrentVideo(database.find(id));
+
+            console.log(`current_episode = ${current_episode}`)
+            player.youtube.loadVideoById(video_url);
         })
     };
 
@@ -62,9 +66,9 @@ function WebdocPlayerView() {
             let button = $(this);
             let fade_in   = button.data('fadeIn');
             let video_id  = button.data('videoId');
-            let video_url = button.data('videoUrl');
 
-            changeVideo(video_id, video_url, fade_in);
+            // changeVideo(video_id, video_url, fade_in);
+            changeVideo(video_id, fade_in);
         });
     };
 
@@ -106,19 +110,10 @@ function WebdocPlayerView() {
 
     // Fetches new video into current_episode
     // Load new player.youtube
-    function changeVideo(video_id, video_url, fade_in) {
-        const video_post_url = `/videos/${video_id}/video_posts.json`;
-        const   map_post_url = `/videos/${video_id}/map_posts.json`;
-
-        player.video_id = video_id;
-        console.log(`video_id: ${video_id}`)
-
-        fetch(video_post_url)
-            .then(function(response) { return response.json(); })
-            .then(function(posts_json) {
-                player.youtube.loadVideoById(video_url);
-                current_episode.video_posts = posts_json;
-            })
+    function changeVideo(video_id) {
+        current_video = database.find(video_id);
+        database.setCurrentVideo(current_video);
+        player.youtube.loadVideoById(url);
     };
 
 

@@ -28,12 +28,10 @@ var database = (function () {
 	}
 
 	function find(id) {
-		for (var i = videos.length - 1; i >= 0; i--) {
-			if (videos[i].id = id) {
-				return videos[i]
-			}
-		}
-		return 0
+		console.log(`find(${id})`)
+		var result  = videos.filter((video) => video.id == id );
+		console.log(result);
+        return result? result[0] : null; // or undefined
 	}
  
 	 
@@ -45,6 +43,7 @@ var database = (function () {
 
       setCurrentVideo(video) {
       	current_video = video;
+      	return current_video
       },
 
       addVideo: addVideo,
