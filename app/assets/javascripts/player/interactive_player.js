@@ -34,7 +34,12 @@ function WebdocPlayerView() {
         current_episode = new_episode;
 
         $('.episode button').on('click', () => {
-            console.log('changeVideo() pls')
+            console.log('changeVideo() pls');
+            var id = $(this).attr('data-video-id');
+            var url = $(this).attr('data-video-url');
+            current_video = database.find(id);
+            database.setCurrentVideo(current_video);
+            player.youtube.loadVideoById(url);
         })
     };
 

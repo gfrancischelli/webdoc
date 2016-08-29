@@ -5,7 +5,7 @@
 			= image_tag video.cover.url, class: "card-img-top", width: "380px"
 			.card-block
 				%h4.card-title= video.title
-				%button.btn.btn-primary{data: {data: video.id} } Assista
+				%a.btn.btn-primary.btn-watch.js-watch.js-smooth-scroll{data: {video_id: video.id, video_url: video.url}, href: "#home"} Assista
 	- many_videos = (@videos.length % 6)
 	- if many_videos != 0
 		- for i in 1 .. ( 6 - many_videos)
