@@ -1,17 +1,8 @@
-function WebdocMap() {
-    var name = 'romualdo';
-    var map_posts = {}; // fetch(/map_posts.json)
+function WebdocMapView() {
     const map_coordinates = { lat: -22.373416, lng: -48.412382 };
 
     function init() {
-    	console.log('iMap.init()');
-    	fetch('/map_posts.json')
-    	.then(function(response) { return response.json(); })
-    	.then(function(map_posts_json) {
-    		map_posts = map_posts_json;
-    	    mapGen();
-    		marksGen();
-    	});
+
     }
 
     function mapGen() {
@@ -31,20 +22,14 @@ function WebdocMap() {
 
     //  For each post in map_post
     //  create and store a new Google Maps Marker
-    function marksGen() { 
-    	map_posts.forEach(function(point) {
-    		const this_point = point;
-    		this_point.mark = new google.maps.Marker({
-    		  position: point.coordinates,
-    		  title: point.title,
-    		  map: map,
-    		});
+    function drawMark(post) { 
+		mark = new google.maps.Marker({
+		  position: post.coordinates,
+		  title: post.title,
+		  map: map,
+		});
 
-    		this_point.mark.addListener('click', function() {
-    			console.log('//updatemapmenu')
-    			updateMapMenu(this_point);
-    		});
-    	})
+        return mark
     }
 
     function updateMapMenu(post) {
@@ -62,7 +47,10 @@ function WebdocMap() {
     };
 
     return { 
-    	init: init
+    	init: init,
+        mapGen: mapGen,
+        drawMark: drawMark,
+        updateMapMenu: updateMapMenu,
     }
 }
 

@@ -1,4 +1,4 @@
-function WebdocPlayer() {
+function WebdocPlayerView() {
 
     // DONT FORGET TO USE THIS ONE
     // var video_id = $('#player-container').data('video-id');
@@ -32,6 +32,10 @@ function WebdocPlayer() {
         init_new_post(player);
         
         current_episode = new_episode;
+
+        $('.episode button').on('click', () => {
+            console.log('changeVideo() pls')
+        })
     };
 
     // onPlayerReady: Add onClick to .js-watch
@@ -111,8 +115,6 @@ function WebdocPlayer() {
                 current_episode.video_posts = posts_json;
             })
     };
-
-
 
 
     // Iterate over map_posts & video_posts

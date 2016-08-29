@@ -1,5 +1,5 @@
 class VideoPostsController < ApplicationController
-	before_action :set_video, only: [:index, :show, :new, :destroy]
+	before_action :set_video, only: [:index, :show, :new]
 	protect_from_forgery except: :new
 
 	def index

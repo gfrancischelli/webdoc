@@ -1,7 +1,3 @@
-
-$(document).ready(ready)
-$(document).on('page:load', ready)
-
 function ready() {
 	console.log('admin js')
 	$('.show-posts-index').on('click', function() {
@@ -18,3 +14,6 @@ function ready() {
 		$('.maps-index').fadeOut();
 	}
 }
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
