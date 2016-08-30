@@ -23,15 +23,12 @@ var database = (function () {
 		return 1
 	}
 
+	// Find and return video[id], null or undefined
 	function find(id) {
-		console.log(`find(${id})`)
 		var result  = videos.filter((video) => video.id == id );
-		console.log(result);
-        return result? result[0] : null; // or undefined
+        return result? result[0] : null;
 	}
  
-	 
-   // Public methods and variables //////////////////////////
     return {
       getCurrentVideo: function() {
         return current_video;

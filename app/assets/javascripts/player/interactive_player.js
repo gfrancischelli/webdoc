@@ -1,8 +1,5 @@
 function WebdocPlayerView() {
 
-    // DONT FORGET TO USE THIS ONE
-    // var video_id = $('#player-container').data('video-id');
-    // let video_id = 1;
     var is_playing = false;
     var current_episode = {};
 
@@ -11,10 +8,7 @@ function WebdocPlayerView() {
         youtube: {},
         interval: {},
         current_episode: {},
-        stopButtons: () => { 
-            clearInterval(this.interval);
-            // console.log('stopInterval');
-             },
+        stopButtons: () => { clearInterval(this.interval) },
         activateButtons: (start_time) => { 
             let time = start_time;
             this.interval = setInterval(function() { 
@@ -25,30 +19,23 @@ function WebdocPlayerView() {
         },
     }
 
-    var remove_video_btns = () => { $('#player-container > a').remove() };
+    var remove_video_btns = () => {
+        $('#player-container > a').remove()
+    };
 
-    // episode = ~rb~Video.find(video_id)
-    // video_id = closure #player-container
     function init(new_episode) {
-        console.log('Player.init()')
-        console.log(new_episode)
-
-        youtubeGen(new_episode.url);
-        init_new_post(player);
-        
         current_episode = new_episode;
 
+        youtubeGen(current_episode.url);
+        init_new_post(player);
+
+        //  Episodes menu button events
         $('.episode a').on('click', function() {
-            console.log('changeVideo() pls');
             remove_video_btns()
             var id = $(this).attr('data-video-id');
             var video_url = $(this).attr('data-video-url');
 
-            console.log(`changeVideo(${id})`);
-            console.log(`database.find(${id}): ${database.find(id).title}`)
             current_episode = database.setCurrentVideo(database.find(id));
-
-            console.log(`current_episode = ${current_episode}`)
             player.youtube.loadVideoById(video_url);
         })
     };
@@ -66,7 +53,7 @@ function WebdocPlayerView() {
         });
     };
 
-    // .js-watch events
+    // .js-watch ( from map menu)
     function onPlayerReady() {
         $('.js-watch').on('click', function() {
             let button = $(this);
@@ -81,28 +68,23 @@ function WebdocPlayerView() {
     // Handles button drawing functions
     // When video is playing / is not
     function onPlayerStateChange(event) {
+        // 1 = Playing
         if (event.data == 1) {
             if (!is_playing) {
                 const current_time = Math.floor(player.youtube.getCurrentTime()) + 1;
-                // Hide every player overlay
+
                 $("#main-navbar").fadeToggle();
                 $(".js-new-post-btn").fadeToggle();
                 $('.new-post-form').fadeOut();
 
-                if (newPostReceived()) {
-                    console.log('received')
-                    addNewPost();
-                }
+                if ( newPostReceived() ){  addNewPost()  }
 
                 is_playing = true;
-                
                 player.activateButtons(current_time);
             }
         }
 
         if (event.data == 2) {
-
-            console.log(`current_episode.id: ${current_episode.id}`);
             $("#videoIdInput").attr('value', current_episode.id);
             $("#fadeInInput").attr('value', Math.floor(player.youtube.getCurrentTime()));
             $("#main-navbar").fadeToggle();
@@ -113,7 +95,7 @@ function WebdocPlayerView() {
         }
     };
 
-    // Load new player.youtube
+    // Changes current_video from db, and load him
     function changeVideo(video_id) {
         current_video = database.find(video_id);
         database.setCurrentVideo(current_video);
@@ -122,26 +104,26 @@ function WebdocPlayerView() {
 
 
     // Iterate over map_posts & video_posts
-    // Draw and remove at exact time
     function drawButtons(current_time) {
         let time = current_time
 
-        current_episode.video_posts.forEach( (post) => {
-            const fade_in = post.fade_in;
-            const fade_out = post.fade_out;
-            const iButton_id = `iButtonVideo${post.id}`;
+        current_episode.video_posts
+            .forEach( (post) => {
+                const fade_in = post.fade_in;
+                const fade_out = post.fade_out;
+                const iButton_id = `iButtonVideo${post.id}`;
 
-            if (current_time >= fade_in  &&
-                current_time <= fade_out  &&
-               !document.getElementById(iButton_id)) {
-                    insertContentBtn(post);
-            }
-
-            if (current_time < fade_in ||
-                current_time > fade_out) {
-                $(`#${iButton_id}`).remove();
-            };
-        });
+                // Button should exist but doesn't
+                if ( !document.getElementById(iButton_id)  
+                     && current_time >= fade_in
+                     && current_time <= fade_out )  {
+                        insertContentBtn(post);
+                }
+                //  Button does exist and shouldn't
+                else if ( current_time < fade_in || current_time > fade_out ) {
+                    $(`#${iButton_id}`).remove();
+                }
+            });
         
         current_episode.map_posts.forEach( (post) => {
             const fade_in = post.fade_in;
@@ -165,26 +147,26 @@ function WebdocPlayerView() {
 
 
     function insertContentBtn(btn) {
-      let content_btn = 
-        $(`<a>${btn.title}</a>`)
-        .addClass('content-btn')
-        .css({ 
-            'top':  `${btn.cooY}%`, 
-            'left': `${btn.cooX}%`, 
-        })
-        .attr({ 
-            'id': `iButtonVideo${btn.id}`,
-            'data-toggle': 'modal',
-            'data-target': '#playerModal',
-        })
-        .appendTo('#player-container').fadeIn(300)
+        let content_btn = 
+            $(`<a>${btn.title}</a>`)
+                .addClass('content-btn')
+                .css({ 
+                'top':  `${btn.cooY}%`, 
+                'left': `${btn.cooX}%`, 
+            })
+            .attr({ 
+                'id': `iButtonVideo${btn.id}`,
+                'data-toggle': 'modal',
+                'data-target': '#playerModal',
+            })
+            .appendTo('#player-container').fadeIn(300)
       
-      content_btn.on('click', () => {
-        player.youtube.pauseVideo();
-        $('#modalTitle').html(btn.title);
-        $('#modalBody').html(btn.content);
-        });
-    };
+        content_btn.on('click', () => {
+            player.youtube.pauseVideo();
+            $('#modalTitle').html(btn.title);
+            $('#modalBody').html(btn.content);
+            });
+        };
 
     function insertMapBtn(post) {
         let map_btn =
@@ -202,58 +184,50 @@ function WebdocPlayerView() {
             .appendTo('#player-container').fadeIn(300)
             
         map_btn.on('click', function(e) {
-                player.youtube.pauseVideo();
-                updateMapMenu(post);
-                e.stopPropagation();
-            });
+            player.youtube.pauseVideo();
+            updateMapMenu(post);
+            e.stopPropagation();
+        });
     }
 
+
     function updateMapMenu(post) {
-        $('#markTitle').text(post.title);
+        $('#markCover').attr('src', post.cover);
         $('#markContent').html(post.content);
-        // $('#markCover').attr('src', post.cover);
-        $('.js-watch')
-            .attr({
-              "data-fade-in":   post.fade_in,
-              "data-video-id":  post.id,
-              "data-video-url": post.url,
-            }); 
+        $('#markTitle').text(post.title);
+        $('.js-watch').attr({
+          "data-fade-in":   post.fade_in,
+          "data-video-id":  post.id,
+          "data-video-url": post.url,
+        });
+
         $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
-        console.log('finish updatemapmenu')
     };
 
     function addNewPost() {
         var $infos = $('#newPostReceiver');
-        var id = $infos.attr('data-id');
-        var title = $infos.data('title');
-        var cooX = $infos.data('coox');
-        var cooY = $infos.data('cooy');
-        var content = $infos.data('content');
-        var fade_in = $infos.data('fade_in');
-        var fade_out = $infos.data('fade_out');
 
         var new_post = {
-            id:       id,
-            title:    title,
-            cooX:     cooX,
-            cooY:     cooY,
-            content:  content,
-            fade_in:  fade_in,
-            fade_out: fade_out,
+            id:       $infos.attr('data-id'),
+            title:    $infos.data('title'),
+            cooX:     $infos.data('coox'),
+            cooY:     $infos.data('cooy'),
+            content:  $infos.data('content'),
+            fade_in:  $infos.data('fade_in'),
+            fade_out: $infos.data('fade_out'),
         };
 
         insertContentBtn(new_post);
-
         current_episode.video_posts.push(new_post);
     }
 
     function newPostReceived() {
         let data_id = $('#newPostReceiver').attr('data-id');
         let data_title = $('#newPostReceiver').data('title');
-        if (data_id != 0) { return true }
-        else { return false }
-    }
 
+        if ( data_id != 0 ) {  return true  }
+        return false 
+    }
 
     return {
         init: init

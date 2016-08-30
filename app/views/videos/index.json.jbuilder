@@ -7,6 +7,7 @@ json.array! @videos do |video|
 	json.id		video.id
 	json.title	video.title
 	json.url	video.url
+	json.cover  video.cover.url
 
 	json.video_posts video.video_posts do |post|
 		json.id 		post.id
