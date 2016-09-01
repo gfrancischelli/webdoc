@@ -1,8 +1,3 @@
-# json.array! @videos do |video|
-# 	json.id video.id
-# 	json.title video.title
-# end
-
 json.array! @videos do |video|
 	json.id		video.id
 	json.title	video.title
@@ -21,6 +16,7 @@ json.array! @videos do |video|
 		
 	json.map_posts video.map_posts do |post|
 		json.id 		post.id
+		json.cover		post.cover.url
 		json.title 		post.title
 		json.content	post.content
 		json.cooX 		post.cooX

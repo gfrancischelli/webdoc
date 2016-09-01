@@ -87,12 +87,17 @@ function WebdocPlayerView() {
     };
 
     // Changes current_video from db, and load him
-    function changeVideo(video_id) {
-        current_video = database.find(video_id);
-        database.setCurrentVideo(current_video);
-        player.youtube.loadVideoById(current_video.url);
+    function changeVideo(video_id, fade_in) {
+        current_episode = PlayerController.setVideo(video_id);
+        playVideoById(video_id, fade_in)
     };
 
+    function playVideoById(video_id, fade_in) {
+        player.youtube.loadVideoById(current_episode.url);
+        if (fade_in) {
+            player.youtube.seekTo(fade_in);
+        }
+    }
 
     // Iterate over map_posts & video_posts
     function drawButtons(current_time) {
@@ -207,7 +212,10 @@ function WebdocPlayerView() {
     }
 
     return {
-        init: init
+        init: init,
+        clearPlayerButtons: clear_player_buttons,
+        changeVideo: changeVideo,
+        playVideoById: playVideoById,
     }
 };
 

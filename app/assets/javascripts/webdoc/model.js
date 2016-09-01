@@ -2,6 +2,8 @@ var database = (function () {
  
 	var videos = [];
 	var current_video;
+	var next_video;
+	var next_video_fade_in;
  
 	var init = function () {
 		console.log('init model')
@@ -29,20 +31,38 @@ var database = (function () {
         return result? result[0] : null;
 	}
  
+ 	function getCurrentVideo() {
+ 		return current_video
+ 	}
+
+ 	function setCurrentVideo(video){
+ 		current_video = video;
+ 		return current_video
+ 	}
+
+ 	function queueVideoByID(id, fade_in) {
+ 		next_video = find(id);
+ 		next_video_fade_in = fade_in;
+ 		return next_video
+ 	}
+
+ 	function getNextVideo() {
+ 		return next_video
+ 	}
+
+ 	function getQueueTime() {
+ 		return next_video_fade_in
+ 	}
+
     return {
-      getCurrentVideo: function() {
-        return current_video;
-      },
-
-      setCurrentVideo(video) {
-      	current_video = video;
-      	return current_video
-      },
-
-      addVideo: addVideo,
-      init: init,
-      find: find,
-
+    	getCurrentVideo: getCurrentVideo,
+     	setCurrentVideo: setCurrentVideo,
+    	queueVideoByID: queueVideoByID,
+    	getQueueTime: getQueueTime,
+    	getNextVideo: getNextVideo,
+		addVideo: addVideo,
+		init: init,
+		find: find,
     };
 })();
 

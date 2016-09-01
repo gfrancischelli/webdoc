@@ -7,24 +7,31 @@ var PlayerController = (function() {
         fetch(`/videos/${video_id}.json`)
             .then(function(response) { return response.json() })
             .then(function(episode_json) {
-                database.setCurrentVideo(episode_json);
                 PlayerView.init(episode_json);
+                database.setCurrentVideo(episode_json);
                 console.log(`PlayerView.init(${episode_json.title})`)
-            });
+        });
+
     }
 
-    function load(video_id) {
-        fetch(`/videos/${video_id}.json`)
-            .then(function(response) { return response.json() })
-            .then(function(episode_json) {
-                episode = episode_json;
-                return episode;
-            });
-    };
+    function playNextVideo(){
+        const video = database.setCurrentVideo(database.getNextVideo());
+        const fade_in = database.getQueueTime()
+        PlayerView.clearPlayerButtons();
+        PlayerView.changeVideo(video.id, fade_in);
+        console.log('playNextVideo()', video)
+    }
+
+    function setVideo(video_id) {
+        console.log(database.setCurrentVideo(database.find(video_id)))
+        return database.setCurrentVideo(database.find(video_id));
+
+    }
 
     return { 
         init: init,
-        load: load,
+        setVideo: setVideo,
+        playNextVideo: playNextVideo,
     }
 })();
 
@@ -44,20 +51,31 @@ var MapController = (function() {
             MapView.mapGen();
             marksGen();
         });
-    }
 
-    function marksGen() {
-        map_posts.forEach((post) => {
-            mark = MapView.drawMark(post);
-            mark.addListener('click', function() {
-                console.log('//updatemapmenu');
-                MapView.updateMapMenu(post);
-            });
+        $('.js-map-watch').on('click', function() {
+            PlayerController.playNextVideo();
         })
     }
 
+    function marksGen() {
+        for (let i = 0; i < map_posts.length; i++) {
+            let post = map_posts[i];
+            mark = MapView.drawMark(post);
+            mark.addListener('click', function() {
+                selectMapPost(post);
+            });
+        }
+    }
+
+    function selectMapPost(post) {
+        console.log('selectMapPost', post)
+        MapView.render(post);
+        database.queueVideoByID(post.video_id, post.fade_in);
+    }
+
     return {
-        init: init
+        init: init,
+        selectMapPost: selectMapPost,
     }
 })();
 
