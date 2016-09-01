@@ -12,18 +12,19 @@ function WebdocPlayerView() {
         activateButtons: (start_time) => { 
             let time = start_time;
             this.interval = setInterval(function() { 
-              // console.log(time);
               drawButtons(time);
               time += 0.5;
               }, 500);
         },
     }
 
-    var remove_video_btns = () => {
+    var clear_player_buttons = () => {
         $('#player-container > a').remove()
     };
 
     function init(new_episode) {
+        console.log(`new_episode: ${new_episode}`);
+        console.log(new_episode);
         current_episode = new_episode;
 
         youtubeGen(current_episode.url);
@@ -31,12 +32,9 @@ function WebdocPlayerView() {
 
         //  Episodes menu button events
         $('.episode a').on('click', function() {
-            remove_video_btns()
-            var id = $(this).attr('data-video-id');
-            var video_url = $(this).attr('data-video-url');
-
-            current_episode = database.setCurrentVideo(database.find(id));
-            player.youtube.loadVideoById(video_url);
+            let id = $(this).attr('data-video-id');
+            clear_player_buttons();
+            changeVideo(id);
         })
     };
 
@@ -55,14 +53,7 @@ function WebdocPlayerView() {
 
     // .js-watch ( from map menu)
     function onPlayerReady() {
-        $('.js-watch').on('click', function() {
-            let button = $(this);
-            let fade_in   = button.data('fadeIn');
-            let video_id  = button.data('videoId');
-
-            remove_video_btns();
-            changeVideo(video_id, fade_in);
-        });
+        // MapController.update_watch();
     };
 
     // Handles button drawing functions
@@ -185,24 +176,10 @@ function WebdocPlayerView() {
             
         map_btn.on('click', function(e) {
             player.youtube.pauseVideo();
-            updateMapMenu(post);
+            MapController.selectMapPost(post);
             e.stopPropagation();
         });
     }
-
-
-    function updateMapMenu(post) {
-        $('#markCover').attr('src', post.cover);
-        $('#markContent').html(post.content);
-        $('#markTitle').text(post.title);
-        $('.js-watch').attr({
-          "data-fade-in":   post.fade_in,
-          "data-video-id":  post.id,
-          "data-video-url": post.url,
-        });
-
-        $('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
-    };
 
     function addNewPost() {
         var $infos = $('#newPostReceiver');

@@ -28,28 +28,24 @@ function WebdocMapView() {
 		  title: post.title,
 		  map: map,
 		});
-
         return mark
     }
 
-    function updateMapMenu(post) {
+    function render(post) {
     	$('#markTitle').text(post.title);
         $('#markContent').html(post.content);
     	$('#markCover').attr('src', post.cover);
-    	$('.js-watch').attr({
-		  "data-fade-in":   post.fade_in,
-		  "data-video-id":  post.id,
-		  "data-video-url": post.url,
-		}); 
 
     	$('#mapInfoDisplay *:hidden').hide().removeClass('hidden').fadeIn(650);
+
+        console.log('render', post)
     };
 
     return { 
     	init: init,
         mapGen: mapGen,
         drawMark: drawMark,
-        updateMapMenu: updateMapMenu,
+        render: render,
     }
 }
 
