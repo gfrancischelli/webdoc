@@ -1,6 +1,8 @@
 function WebdocPlayerView() {
 
     var is_playing = false;
+
+    // Inside model, alias current_video
     var current_episode = {};
 
     var player = { 
