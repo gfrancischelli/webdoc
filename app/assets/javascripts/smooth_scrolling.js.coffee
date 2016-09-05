@@ -7,7 +7,6 @@ jQuery(document).ready ->
       -> window.location.hash = hash   
     return
 
-
   $("iframe").addClass 'embed-responsive-item'
 
   

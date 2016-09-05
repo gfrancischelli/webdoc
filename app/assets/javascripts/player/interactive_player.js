@@ -68,7 +68,9 @@ function WebdocPlayerView() {
 
                 $("#main-navbar").fadeToggle();
                 $(".js-new-post-btn").fadeToggle();
+                $(".js-alert-sign-in").fadeToggle();
                 $('.new-post-form').fadeOut();
+                $('.require-login').fadeOut();
 
                 if ( newPostReceived() ){  addNewPost()  }
 
@@ -82,6 +84,7 @@ function WebdocPlayerView() {
             $("#fadeInInput").attr('value', Math.floor(player.youtube.getCurrentTime()));
             $("#main-navbar").fadeToggle();
             $(".js-new-post-btn").fadeToggle();
+            $(".js-alert-sign-in").fadeToggle();
 
             is_playing = false;
             player.stopButtons();

@@ -19,9 +19,18 @@
         %button#howto.btn.btn-info{style: "position:absolute; right: 2rem; bottom: 1.5rem",
         "data-dismiss" => "modal", "aria-label" => "Close"}
           Ok
-%button.user-post-btn.js-new-post-btn
-  %span.fa.fa-pencil
+- if user_signed_in? 
+  %button.user-post-btn.js-new-post-btn
+    %span.fa.fa-pencil
+- else 
+  %button.user-post-btn.js-alert-sign-in
+    %span.fa.fa-pencil
 %output#newPostReceiver{name: 'new_post_response', 'data-id' => '0'}
 #player-container.embed-responsive.embed-responsive-16by9.js-set-player-id{ data: {video_id: @videos.last.id} }
-  = render 'layouts/new_post_form'
+  -if user_signed_in?
+    = render 'layouts/new_post_form'
+  -else 
+    .require-login
+      %h4 Para escrever comentários efetue o
+      = link_to 'Login', new_user_session_path, class: 'btn btn-primary'
   #youtube
